@@ -10,6 +10,7 @@
 	</parent>
 	<groupId>classPortal</groupId>
 	<artifactId>demo</artifactId>
+	<!-- creates a jar file called demo-0.0.1 -->
 	<version>0.0.1-SNAPSHOT</version>
 	<name>demo</name>
 	<description>Demo project for Spring Boot</description>
@@ -23,7 +24,15 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
+		<!-- heroku dependency to connect remot postgres db -->
+		<dependency>
+		  <groupId>org.springframework.boot</groupId>
+		  <artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency>
+		<dependency>
+		  <groupId>org.postgresql</groupId>
+		  <artifactId>postgresql</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
@@ -42,12 +51,13 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-
+			
+			<!-- frontend-maven-plugin: make backend and frontend is packaged into a single jar file -->
+			<!-- after adding all the plugins below, run mvn clean install (run as -> maven build -> -->
 			<plugin>
 				<groupId>com.github.eirslett</groupId>
 				<artifactId>frontend-maven-plugin</artifactId>
 				<version>1.9.1</version>
-
 				<executions>
 					<execution>
 						<id>Install node and npm</id>
@@ -55,6 +65,7 @@
 							<goal>install-node-and-npm</goal>
 						</goals>
 						<phase>generate-resources</phase>
+						<!-- check computer nodeVersion and npmVersion by doing node - -version and npm - -version in command prompt -->
 						<configuration>
 							<nodeVersion>v14.16.0</nodeVersion>
 							<npmVersion>6.14.11</npmVersion>
@@ -83,13 +94,15 @@
 						</configuration>
 					</execution>
 				</executions>
+				<!-- update nodeVersion -->
+				<!-- workingDirectory indicates path location of frontend folder -->
 				<configuration>
 					<nodeVersion>v14.16.0</nodeVersion>
 					<workingDirectory>src/client-front-end</workingDirectory>
 				</configuration>
-
 			</plugin>
-
+			
+			<!-- maven-resources-plugin: copy files from input resource directory to output directory as static resources-->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
@@ -105,6 +118,7 @@
 							<resources>
 								<resource>
 									<directory>src/client-front-end/build</directory>
+									<!-- filtering = true allows dynamic placeholder variables to change a value (ex: ${resources.name}) -->
 									<filtering>true</filtering>
 								</resource>
 							</resources>
