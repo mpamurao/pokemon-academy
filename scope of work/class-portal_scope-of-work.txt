@@ -1,0 +1,28 @@
+PROJECT NAME - CLASS SIGN UP PORTAL
+
+SPECS:
+Teachers
+Students
+Classses
+
+Teacher can teach multiple classes
+Students can take multiple classes
+Classes can have multiple teachers and students
+
+Want to do:
+Teacher can sign up for classes to teach
+Student can sign up for classes to take
+As a Teacher, be able to see the class roster
+As a Teacher, be able to delete a class
+As a Teacher, be able to create a new class
+As a Student, be able to see who is teaching
+As a Student, can remove themselves from the class
+Be able to add additional Teachers and Students in portal (new profile)
+
+Stretch goal:
+Make a limit to number of people that are allowed to enroll to a class
+
+
+create table teacher (id int, first_name varchar, last_name varchar, department varchar)
+create table student
+create table classes (teacher, class, class_size)

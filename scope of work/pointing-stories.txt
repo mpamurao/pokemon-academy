@@ -1,0 +1,9 @@
+POINTING STORIES
+HOW DIFFICULT/COMPLEX IS THE STORY AND HOW MANY UNKNOWNS
+pointing scale based on Fibonacci (1, 2, 3, 5, 8)
+
+0 - trivial. change a typo
+1 - trvial change to code but also need to change tests
+2, 3 - edit code and tests that increases due to complexity
+5 - considerable amount of unknowns and code manipulation
+8 - a big story that has a lot of unknowns and/or complicated. after doing research/getting into it, can then potentially be broken into smaller stories
