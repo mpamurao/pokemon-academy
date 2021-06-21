@@ -13,22 +13,23 @@ public class StudentModel {
 	@Column
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long student_id;
-	@Column
+	@Column(nullable=false)
 	private String first_name;
-	@Column
+	@Column(nullable=false)
 	private String last_name;
-	@Column
+	@Column(unique=true, nullable=false)
 	private String email;
-	@Column
+	@Column(nullable=false)
 	private String password;
-	@Column
+	@Column(nullable=false)
 	private String grade_level;
-	@Column 
+	@Column(nullable=false)
 	private String major;
-	@Column 
+	@Column(nullable=false)
 	private String minor;
 	
 //	single student can have many courses
+//	create new table with student_id and course_id
 	@ManyToMany
 	@JoinTable(
 			name = "courses_student",
