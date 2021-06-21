@@ -4,6 +4,8 @@ import {CssBaseline, Container} from '@material-ui/core';
 import Home from './components/Home';
 import StudentLogin from './components/student/StudentLogin';
 import StudentPortal from './components/student/StudentPortal';
+import TeacherLogin from './components/teacher/TeacherLogin';
+import TeacherPortal from './components/teacher/TeacherPortal';
 
 function App() {
   return (
@@ -15,9 +17,9 @@ function App() {
           <Redirect exact from="/" to="/home" />
           <Route path="/home" component={Home} />
           <Route exact path="/student" component={StudentLogin} />
-          {/* <Route path="/employee" component={EmployeeLogin} /> */}
           <Route path="/student/portal" component={StudentPortal} />
-
+          <Route exact path="/teacher" component={TeacherLogin} />
+          <Route path="/teacher/portal" component={TeacherPortal} />
 
           <Route path="*" render={() => <Container 
                                           style={{

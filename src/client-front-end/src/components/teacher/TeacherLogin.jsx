@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import {Container, Button, withStyles, FormControl} from '@material-ui/core';
 import loginPageStyles from '../../styles/loginPageStyles';
-import StudentLoginForm from './StudentLoginForm';
-import StudentRegisterForm from './StudentRegisterForm';
+import TeacherLoginForm from './TeacherLoginForm';
+import TeacherRegisterForm from './TeacherRegisterForm';
 
-class StudentLogin extends Component {
+
+class TeacherLogin extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            // identity = student
+            // identity = teacher
             identity:"",
             email: "",
             password: "",
@@ -48,7 +49,7 @@ class StudentLogin extends Component {
         return (
             <div>
                 <Container className={classes.welcome}>
-                    WELCOME STUDENT
+                    WELCOME TEACHER
                 </Container>
                 <Container>
                     <FormControl className={classes.studentLogin} >
@@ -56,9 +57,9 @@ class StudentLogin extends Component {
                         <Button type="submit" onClick={this.signUp}> Sign Up </Button>
 
                         {this.state.form === "login" ? 
-                            <StudentLoginForm email={this.state.email} password={this.state.password} 
+                            <TeacherLoginForm email={this.state.email} password={this.state.password} 
                                 handleChange={this.handleChange} />
-                            : <StudentRegisterForm />
+                            : <TeacherRegisterForm />
                             
                         }
                     </FormControl> 
@@ -68,4 +69,4 @@ class StudentLogin extends Component {
     }
 }
 
-export default withStyles(loginPageStyles)(StudentLogin);
+export default withStyles(loginPageStyles)(TeacherLogin);

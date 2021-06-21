@@ -22,8 +22,8 @@ class Home extends Component {
                         </Button>
                     </Link>
                     <Link to={{
-                        pathname:"/employee", 
-                        state:{identity:"employee"}}}>
+                        pathname:"/teacher", 
+                        state:{identity:"teacher"}}}>
                         <Button className={classes.identity}>
                             Employee
                         </Button>

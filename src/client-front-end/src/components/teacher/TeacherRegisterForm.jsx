@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import {Container, Button,TextField} from '@material-ui/core';
-import StudentService from '../../service/StudentService';
+import TeacherService from '../../service/TeacherService';
 
-class StudentRegisterForm extends Component {
+
+class TeacherRegisterForm extends Component {
     constructor() {
         super()
 
         this.state = {
             first_name:"",
             last_name:"",
-            grade_level:"",
-            major:"",
-            minor:"",
             email:"",
             password:"",
+            department:"",
+            employee_title:"",
             validRequest:""
         }
     }
@@ -26,25 +26,22 @@ class StudentRegisterForm extends Component {
         if (input === "lastName") {
             this.setState({last_name:event.target.value});
         }
-        if (input === "gradeLevel") {
-            this.setState({grade_level:event.target.value});
-        }
-        if (input === "major") {
-            this.setState({major:event.target.value});
-        }
-        if (input === "minor") {
-            this.setState({minor:event.target.value});
-        }
         if (input === "email") {
             this.setState({email:event.target.value});
         }
         if (input === "password") {
             this.setState({password:event.target.value});
         }
+        if (input === "department") {
+            this.setState({department:event.target.value});
+        }
+        if (input === "employeeTitle") {
+            this.setState({employee_title:event.target.value});
+        }
     }
 
     createAccount = () => {        
-         StudentService
+         TeacherService
             .addStudent(this.state)
             .then(res => {
                 if (res === "bad request") {
@@ -60,27 +57,24 @@ class StudentRegisterForm extends Component {
         return (
             <div>
                 Register:                  
-                <TextField required id="student-firstName" label="First Name" 
+                <TextField required id="teacher-firstName" label="First Name" 
                     variant="outlined" value={this.state.first_name} 
                     onChange={event => this.handleChange(event, "firstName")} />
-                <TextField required id="student-lastName" label="Last Name" 
+                <TextField required id="teacher-lastName" label="Last Name" 
                     variant="outlined" value={this.state.last_name} 
                     onChange={event => this.handleChange(event, "lastName")} />
-                <TextField required id="student-gradeLevel" label="Grade Level" 
-                    variant="outlined" value={this.state.grade_level} 
-                    onChange={event => this.handleChange(event, "gradeLevel")} />
-                <TextField required id="student-major" label="Major" 
-                    variant="outlined" value={this.state.major} 
-                    onChange={event => this.handleChange(event, "major")} />
-                <TextField required id="student-minor" label="Minor" 
-                    variant="outlined" value={this.state.minor} 
-                    onChange={event => this.handleChange(event, "minor")} />
-                <TextField required id="student-email" label="Email" 
+                <TextField required id="teacher-email" label="Email" 
                     variant="outlined" value={this.state.email} 
                     onChange={event => this.handleChange(event, "email")} />
-                <TextField required id="student-password" label="Password" 
+                <TextField required id="teacher-password" label="Password" 
                     variant="outlined" value={this.state.password} 
                     onChange={event => this.handleChange(event, "password")} />
+                <TextField required id="teacher-department" label="Department" 
+                    variant="outlined" value={this.state.department} 
+                    onChange={event => this.handleChange(event, "department")} />
+                <TextField required id="teacher-title" label="Employee Title" 
+                    variant="outlined" value={this.state.employee_title} 
+                    onChange={event => this.handleChange(event, "employeeTitle")} />
                 <Button type="submit" onClick={this.createAccount}>Create An Account</Button>
                 {this.state.validRequest === "" 
                     ? "" 
@@ -97,4 +91,4 @@ class StudentRegisterForm extends Component {
     }
 }
 
-export default StudentRegisterForm;
+export default TeacherRegisterForm;
