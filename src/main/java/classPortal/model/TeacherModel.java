@@ -17,13 +17,13 @@ public class TeacherModel {
 	private String first_name;
 	@Column
 	private String last_name;
-	@Column
+	@Column(unique=true)
 	private String email;
 	@Column
 	private String password;
 	@Column
 	private String department;
-	@Column 
+	@Column
 	private String employee_title;
 	
 //	single teacher can have many courses

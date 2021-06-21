@@ -19,8 +19,6 @@ public class CourseModel {
 	private String department;
 	@Column
 	private String course_size;
-	@Column
-	private String faculty;
 	
 //	single course can have many students and teachers
 	@ManyToMany(mappedBy="courses_student")
@@ -51,12 +49,6 @@ public class CourseModel {
 	}
 	public void setcourse_size(String course_size) {
 		this.course_size = course_size;
-	}
-	public String getFaculty() {
-		return faculty;
-	}
-	public void setFaculty(String faculty) {
-		this.faculty = faculty;
 	}
 	
 }
