@@ -1,16 +1,16 @@
 import axios from 'axios';
 
-const studentURL = process.env.REACT_APP_ROOT_URL || "http://localhost:8081/student";
+const employeeURL = process.env.REACT_APP_ROOT_URL || "http://localhost:8081/employee";
 
 class StudentService {
     addStudent = data => {
-      console.log(data);
-      return axios
-         .post(`${studentURL}/register`, data)
-         .then(res => "account created")
-         .catch(err => {
-            console.log("AXIOS ERROR: ", err);
-            return "bad request";
+       console.log(data);
+       return axios
+        .post(`${employeeURL}/register`, data)
+        .then(res => console.log(res))
+        .catch(err => {
+           console.log("AXIOS ERROR: ", err);
+           return console.log("bad request");
          });
    }
 
@@ -24,11 +24,11 @@ class StudentService {
       console.log(data);
 
       return axios
-         .post(`${studentURL}/verify`, data)
+         .post(`${employeeURL}/verify`, data)
          .then(res => "logging in")
          .catch(err => {
             console.log("AXIOS ERROR: ", err);
-            return "invalid request";
+            return "Invalid request";
           });
    }
 }

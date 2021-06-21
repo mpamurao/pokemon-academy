@@ -16,14 +16,15 @@ class StudentLoginForm extends Component {
         StudentService
             .verify(this.props.email, this.props.password)
             .then(res => {
+                if (res === "invalid request") {
+                    this.setState({validRequest: false});
+                }
                 if (res === "logging in") {
+                    this.setState({validRequest:true});
                     window.history.pushState({email: this.props.email},'', "/student/portal");
                     window.location.reload();
                 }
             });
-
-        // if invalid authentication
-        this.setState({validRequest: false});
     }
 
     render() {
@@ -40,9 +41,11 @@ class StudentLoginForm extends Component {
                 <Button onClick={this.clickEnter}>Enter</Button>
                 {this.state.validRequest === "" 
                     ? "" 
-                    : <Container>
-                        Invalid email and/or password. Please try again.
-                    </Container>
+                    : !this.state.validRequest 
+                        ? <Container>
+                            Invalid email and/or password. Please try again.
+                        </Container>
+                        : <Container>Logging in...</Container>
                 }
             </div>
         );

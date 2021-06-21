@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Button,TextField} from '@material-ui/core';
+import {Container, Button,TextField} from '@material-ui/core';
 import StudentService from '../../service/StudentService';
 
 class StudentRegisterForm extends Component {
@@ -7,13 +7,14 @@ class StudentRegisterForm extends Component {
         super()
 
         this.state = {
-            // first_name:
-            // last_name:
-            // grade_level:
-            // major:
-            // minor:
-            // email:
-            // password:
+            first_name:"",
+            last_name:"",
+            grade_level:"",
+            major:"",
+            minor:"",
+            email:"",
+            password:"",
+            validRequest:""
         }
     }
 
@@ -42,9 +43,19 @@ class StudentRegisterForm extends Component {
         }
     }
 
-    createAccount = () => {
-        StudentService.addStudent(this.state);
+    createAccount = () => {        
+         StudentService
+            .addStudent(this.state)
+            .then(res => {
+                if (res === "bad request") {
+                    this.setState({validRequest: false});
+                }
+                if (res === "account created") {
+                    this.setState({validRequest:true});
+                }
+            });
     }
+    
     render() {
         return (
             <div>
@@ -71,6 +82,16 @@ class StudentRegisterForm extends Component {
                     variant="outlined" value={this.state.password} 
                     onChange={event => this.handleChange(event, "password")} />
                 <Button type="submit" onClick={this.createAccount}>Create An Account</Button>
+                {this.state.validRequest === "" 
+                    ? "" 
+                    : !this.state.validRequest 
+                        ? <Container>
+                            Missing info. Please complete the form.
+                        </Container>
+                        : <Container>
+                            Account created. Please proceed to login.
+                        </Container>
+                }
             </div>
         );
     }
