@@ -7,9 +7,9 @@ class StudentRegisterForm extends Component {
         super()
 
         this.state = {
-            firstName: "",
-            lastName: "",
-            gradeLevel: "",
+            first_name: "",
+            last_name: "",
+            grade_level: "",
             major: "",
             minor: "",
             email: "",
@@ -20,13 +20,13 @@ class StudentRegisterForm extends Component {
     handleChange = (event, input) => {
         event.preventDefault();
         if (input === "firstName") {
-            this.setState({firstName: event.target.value});
+            this.setState({first_name: event.target.value});
         }
         if (input === "lastName") {
-            this.setState({lastName:event.target.value});
+            this.setState({last_name:event.target.value});
         }
         if (input === "gradeLevel") {
-            this.setState({gradeLevel:event.target.value});
+            this.setState({grade_level:event.target.value});
         }
         if (input === "major") {
             this.setState({major:event.target.value});
@@ -43,7 +43,7 @@ class StudentRegisterForm extends Component {
     }
 
     submit = () => {
-        StudentService.addStudent()
+        StudentService.addStudent(this.state);
     }
     render() {
         return (

@@ -3,8 +3,12 @@ import axios from 'axios';
 const studentURL = "http://localhost:8081/student";
 
 class StudentService {
-    addStudent = () => {
-       console.log("Hello")
+    addStudent = (data) => {
+       console.log(data);
+       return axios
+        .post(`${studentURL}/register`, data)
+        .then(res => console.log(res))
+        .catch(err => console.log("AXIOS ERROR: ", err));
    }
 }
 
