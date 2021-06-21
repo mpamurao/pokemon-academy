@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PortalNavBar from '../TeacherPortalNavBar';
 
 class TeacherPortal extends Component {
     constructor(props) {
@@ -22,6 +23,7 @@ class TeacherPortal extends Component {
         return (
             <div>
                 TEACHER PORTAL
+                <PortalNavBar />
             </div>
         );
     }
