@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom
 import {CssBaseline, Container} from '@material-ui/core';
 import Home from './components/Home';
 import StudentLogin from './components/student/StudentLogin';
+import StudentPortal from './components/student/StudentPortal';
 
 function App() {
   return (
@@ -13,10 +14,11 @@ function App() {
         <Switch>
           <Redirect exact from="/" to="/home" />
           <Route path="/home" component={Home} />
-          <Route path="/student-login" component={StudentLogin} />
-          {/* <Route path="/employee-login" component={EmployeeLogin} /> */}
-          {/* <Route path="/register" component={Register} /> */}
-          {/* <Route path="/home" component={Home}/> */}
+          <Route exact path="/student" component={StudentLogin} />
+          {/* <Route path="/employee" component={EmployeeLogin} /> */}
+          <Route path="/student/portal" component={StudentPortal} />
+
+
           <Route path="*" render={() => <Container 
                                           style={{
                                             fontSize:"2rem",

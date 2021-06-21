@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Container, Button, withStyles, FormControl, InputLabel, TextField, Input} from '@material-ui/core';
+import {Button,TextField} from '@material-ui/core';
 import StudentService from '../../service/StudentService';
 
 class StudentRegisterForm extends Component {
@@ -7,13 +7,13 @@ class StudentRegisterForm extends Component {
         super()
 
         this.state = {
-            first_name: "",
-            last_name: "",
-            grade_level: "",
-            major: "",
-            minor: "",
-            email: "",
-            password: "",
+            // first_name:
+            // last_name:
+            // grade_level:
+            // major:
+            // minor:
+            // email:
+            // password:
         }
     }
 
@@ -42,7 +42,7 @@ class StudentRegisterForm extends Component {
         }
     }
 
-    submit = () => {
+    createAccount = () => {
         StudentService.addStudent(this.state);
     }
     render() {
@@ -70,7 +70,7 @@ class StudentRegisterForm extends Component {
                 <TextField required id="student-password" label="Password" 
                     variant="outlined" value={this.state.password} 
                     onChange={event => this.handleChange(event, "password")} />
-                <Button type="submit" onClick={this.submit}>Create An Account</Button>
+                <Button type="submit" onClick={this.createAccount}>Create An Account</Button>
             </div>
         );
     }

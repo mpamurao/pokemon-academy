@@ -1,8 +1,31 @@
 import React, { Component } from 'react';
-import {Container, Button, withStyles, FormControl, InputLabel, TextField, Input} from '@material-ui/core';
+import {Container, Button, TextField} from '@material-ui/core';
+import StudentService from '../../service/StudentService';
 
 
 class StudentLoginForm extends Component {
+    constructor() {
+        super()
+
+        this.state = {
+            validRequest: "",
+        }
+    }
+
+    clickEnter = () => {
+        StudentService
+            .verify(this.props.email, this.props.password)
+            .then(res => {
+                if (res === "logging in") {
+                    window.history.pushState({email: this.props.email},'', "/student/portal");
+                    window.location.reload();
+                }
+            });
+
+        // if invalid authentication
+        this.setState({validRequest: false});
+    }
+
     render() {
         return (
             <div>
@@ -13,7 +36,14 @@ class StudentLoginForm extends Component {
                 <TextField required id="student-password" label="Password" 
                     variant="outlined" value={this.props.password} 
                     onChange={event => this.props.handleChange(event, "password")} />
-                <Button type="submit">Submit</Button>
+               
+                <Button onClick={this.clickEnter}>Enter</Button>
+                {this.state.validRequest === "" 
+                    ? "" 
+                    : <Container>
+                        Invalid email and/or password. Please try again.
+                    </Container>
+                }
             </div>
         );
     }

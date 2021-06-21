@@ -15,14 +15,14 @@ class Home extends Component {
                 <Container className={classes.pickIdentity}>
                     <p>Please choose a portal:</p>
                     <Link to={{
-                            pathname:"/student-login", 
+                            pathname:"/student", 
                             state:{identity:"student"}}}>
                         <Button className={classes.identity}>
                             Student
                         </Button>
                     </Link>
                     <Link to={{
-                        pathname:"/employee-login", 
+                        pathname:"/employee", 
                         state:{identity:"employee"}}}>
                         <Button className={classes.identity}>
                             Employee

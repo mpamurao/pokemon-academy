@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Container, Button, withStyles, FormControl, InputLabel, TextField, Input} from '@material-ui/core';
+import {Container, Button, withStyles, FormControl} from '@material-ui/core';
 import loginPageStyles from '../../styles/loginPageStyles';
 import StudentLoginForm from './StudentLoginForm';
 import StudentRegisterForm from './StudentRegisterForm';
@@ -23,6 +23,15 @@ class StudentLogin extends Component {
         }
     }
 
+    signUp = () => {
+        this.setState({form:"register"});
+    }
+
+    login = () => {
+        this.setState({form:"login"});
+    }
+
+    // handleChange for login form
     handleChange = (event, input) => {
         event.preventDefault();
 
@@ -34,20 +43,13 @@ class StudentLogin extends Component {
         }
     }
 
-    signUp = () => {
-        this.setState({form:"register"});
-    }
-
-    login = () => {
-        this.setState({form:"login"});
-    }
 
     render() {
         const {classes} = this.props;
         return (
             <div>
                 <Container className={classes.welcome}>
-                    WELCOME {this.state.identity.toUpperCase()}
+                    WELCOME STUDENT
                 </Container>
                 <Container>
                     <FormControl className={classes.studentLogin} >
@@ -57,7 +59,6 @@ class StudentLogin extends Component {
                         {this.state.form === "login" ? 
                             <StudentLoginForm email={this.state.email} password={this.state.password} 
                                 handleChange={this.handleChange} />
-                               
                             : <StudentRegisterForm />
                             
                         }
