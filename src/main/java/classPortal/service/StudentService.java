@@ -1,7 +1,6 @@
 package classPortal.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import classPortal.model.StudentModel;
@@ -24,10 +23,6 @@ public class StudentService {
 		return studentRepo.findById(student_id).get();
 	}
 	
-//	get specific email
-	public String checkExistingEmail(String emailInput) {
-		return studentRepo.checkExistingEmail(emailInput);
-	}
 //	post/create new student
 	public StudentModel addStudent(StudentModel student) {
 		return studentRepo.save(student);
@@ -43,4 +38,13 @@ public class StudentService {
 		studentRepo.deleteById(student_id);
 	}
 	
+//	get specific email
+	public String checkEmailExists(String emailInput) {
+		return studentRepo.checkEmailExists(emailInput);
+	}
+	
+//	verify password matches to corresponding email
+	public String checkCorrespondingPass(String emailInput) {
+		return studentRepo.checkCorrespondingPass(emailInput);
+	}
 }

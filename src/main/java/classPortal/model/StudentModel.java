@@ -3,6 +3,8 @@ package classPortal.model;
 import java.util.Set;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 
 //student_id, first_name, last_name, email, grade_level, major, minor
@@ -13,19 +15,33 @@ public class StudentModel {
 	@Column
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long student_id;
-	@Column(nullable=false)
+	@Size(min=1)
+	@NotNull
+	@Column
 	private String first_name;
-	@Column(nullable=false)
+	@Size(min=1)
+	@NotNull
+	@Column
 	private String last_name;
-	@Column(unique=true, nullable=false)
+	@Size(min=1)
+	@NotNull
+	@Column
 	private String email;
-	@Column(nullable=false)
+	@Size(min=1)
+	@NotNull
+	@Column
 	private String password;
-	@Column(nullable=false)
+	@Size(min=1)
+	@NotNull
+	@Column
 	private String grade_level;
-	@Column(nullable=false)
+	@Size(min=1)
+	@NotNull
+	@Column
 	private String major;
-	@Column(nullable=false)
+	@Size(min=1)
+	@NotNull
+	@Column
 	private String minor;
 	
 //	single student can have many courses

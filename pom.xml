@@ -38,6 +38,10 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency> 
+		    <groupId>org.springframework.boot</groupId> 
+		    <artifactId>spring-boot-starter-validation</artifactId> 
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -48,7 +52,7 @@
 			</plugin>
 			
 			<!-- frontend-maven-plugin: make backend and frontend is packaged into a single jar file -->
-			<!-- after adding all the plugins below, run mvn clean install (run as -> maven build -> -->
+			<!-- after adding all the plugins below, run mvn clean install (run as -> maven build -> goals: clean install) -->
 			<plugin>
 				<groupId>com.github.eirslett</groupId>
 				<artifactId>frontend-maven-plugin</artifactId>

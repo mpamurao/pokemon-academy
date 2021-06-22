@@ -1,20 +1,19 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
-import {Toolbar, Paper, Menu, MenuItem, MenuList, Box, Grid, Button} from '@material-ui/core';
-
-const NavBarArr = ["Profile", "Class Roster"]
+import {Toolbar, Paper, Menu, MenuItem, MenuList, Button} from '@material-ui/core';
 
 function TeacherPortalNavBar(props) {
     // anchor is initial position of menu
-    const [anchor, setAnchor] = useState(null);
-
+    const [anchorEl, setAnchorEl] = useState(null);
     const handleOpenMenu = (event) => {
         // set the element that was clicked as the anchor
-        setAnchor(event.currentTarget);
+        setAnchorEl(event.currentTarget);
     }
 
-    const handleMenuClose = (event) => {
-        setAnchor(null);
+    const handleMenuClose = (menuItem) => {
+        setAnchorEl(null);
+        console.log(menuItem)
+        props.setCurrentPage(menuItem);
     }
     return (
         <div>
@@ -27,15 +26,22 @@ function TeacherPortalNavBar(props) {
                     Profile
                 </Button>
             </Toolbar>
+
             <Paper>
-                <Menu id="menu" anchor={anchor} open={Boolean(anchor)} 
+                <Menu id="menu" anchor={anchorEl} open={Boolean(anchorEl)} 
                 onClose={handleMenuClose}
                 style={{margin:"4rem 0rem 0rem 0.6rem"}}>
                     {/* close list when an element is clicked */}
-                    <MenuList onClick={handleMenuClose}>
-                        <MenuItem>My Account</MenuItem>
-                        <MenuItem>Class Roster</MenuItem>
-                        <MenuItem>Log Out</MenuItem>
+                    <MenuList>
+                        <Link to="/teacher/portal/account">
+                            <MenuItem onClick={() => handleMenuClose("myAcc")}>My Account</MenuItem>
+                        </Link>
+                        <Link to="/teacher/portal/classRoster">
+                            <MenuItem onClick={() => handleMenuClose("classRoster")}>Class Roster</MenuItem>
+                        </Link>
+                        <Link to="/teacher/">
+                            <MenuItem>Log Out</MenuItem>
+                        </Link>
                     </MenuList>
                 </Menu>
             </Paper>
