@@ -21,7 +21,7 @@ class TeacherLoginForm extends Component {
                 }
                 if (res === "logging in") {
                     this.setState({validRequest:true});
-                    window.history.pushState({email: this.props.email},'', "/teacher/portal");
+                    window.history.pushState({email: this.props.email},'', "/#/teacher/portal");
                     window.location.reload();
                 }
             });

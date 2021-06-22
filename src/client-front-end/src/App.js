@@ -1,5 +1,5 @@
 import './App.css';
-import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
+import {HashRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
 import {CssBaseline, Container} from '@material-ui/core';
 import Home from './components/Home';
 import StudentLogin from './components/student/StudentLogin';

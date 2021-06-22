@@ -21,7 +21,7 @@ class StudentLoginForm extends Component {
                 }
                 if (res === "logging in") {
                     this.setState({validRequest:true});
-                    window.history.pushState({email: this.props.email},'', "/student/portal");
+                    window.history.pushState({email: this.props.email},'', "/#/student/portal");
                     window.location.reload();
                 }
             });
