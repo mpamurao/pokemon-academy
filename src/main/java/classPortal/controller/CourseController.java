@@ -8,10 +8,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import classPortal.model.CourseModel;
+import classPortal.model.TeacherModel;
 import classPortal.service.CourseService;
 
 @RestController
 @RequestMapping("/course")
+@CrossOrigin("*")
 public class CourseController {
 	@Autowired
 	CourseService courseService;
@@ -33,6 +35,11 @@ public class CourseController {
 	@PostMapping("/create")
 //	create a new course
 	public ResponseEntity<Object> addCourse(@Valid @RequestBody CourseModel course) {
+//		save the course to course_directory
+//		CourseModel createdCourse = courseService.addCourse(course);
+////		get course and teacher id
+//		long courseId = createdCourse.getCourse_id();
+//		long employeeId = teacher.getEmployee_id();
 		return new ResponseEntity<>(courseService.addCourse(course), HttpStatus.OK);
 	}
 	

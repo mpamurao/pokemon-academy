@@ -37,4 +37,5 @@ public class CourseService {
 	public void deleteCourse(Long course_id) {
 		courseRepo.deleteById(course_id);
 	}
+	
 }

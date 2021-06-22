@@ -14,7 +14,7 @@ public class StudentModel {
 	@Id
 	@Column
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long student_id;
+	private Long student_id;
 	@Size(min=1)
 	@NotNull
 	@Column
@@ -46,18 +46,18 @@ public class StudentModel {
 	
 //	single student can have many courses
 //	create new table with student_id and course_id
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(
 			name = "courses_student",
-			joinColumns = @JoinColumn(name = "student_id"),
-			inverseJoinColumns = @JoinColumn(name = "course_id")
+			joinColumns = @JoinColumn(name = "student_id", referencedColumnName = "student_id"),
+			inverseJoinColumns = @JoinColumn(name = "course_id", referencedColumnName = "course_id")
 	)
 	Set<CourseModel> courses_student;
 	
-	public long getStudent_id() {
+	public Long getStudent_id() {
 		return student_id;
 	}
-	public void setStudent_id(long student_id) {
+	public void setStudent_id(Long student_id) {
 		this.student_id = student_id;
 	}
 	public String getFirst_name() {

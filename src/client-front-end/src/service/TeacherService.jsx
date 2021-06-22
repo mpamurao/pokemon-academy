@@ -3,7 +3,7 @@ import axios from 'axios';
 const employeeURL = `${process.env.REACT_APP_ROOT_URL || "http://localhost:8081"}/teacher`;
 
 class TeacherService {
-    addStudent = data => {
+    addTeacher = data => {
        console.log(data);
        return axios
         .post(`${employeeURL}/register`, data)
@@ -14,7 +14,7 @@ class TeacherService {
         });
    }
 
-   // verify student login info
+   // verify teacher login info
    verify = (email, password) => {
       const data = {
          email,
