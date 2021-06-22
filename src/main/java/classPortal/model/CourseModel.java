@@ -3,6 +3,8 @@ package classPortal.model;
 import java.util.Set;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 
 //course_id, course_name, department, course_size, teacher
@@ -13,10 +15,20 @@ public class CourseModel {
 	@Column
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long course_id;
+	@Size(min=1)
+	@NotNull
 	@Column
 	private String course_name;
+	@Size(min=1)
+	@NotNull
+	@Column
+	private String course_description;
+	@Size(min=1)
+	@NotNull
 	@Column
 	private String department;
+	@Size(min=1)
+	@NotNull
 	@Column
 	private String course_size;
 	
@@ -26,17 +38,23 @@ public class CourseModel {
 	@ManyToMany(mappedBy="courses_teacher")
 	Set<TeacherModel> teachers;
 	
-	public long getcourse_id() {
+	public long getCourse_id() {
 		return course_id;
 	}
-	public void setcourse_id(long course_id) {
+	public void setCourse_id(long course_id) {
 		this.course_id = course_id;
 	}
-	public String getcourse_name() {
+	public String getCourse_name() {
 		return course_name;
 	}
-	public void setcourse_name(String course_name) {
+	public void setCourse_name(String course_name) {
 		this.course_name = course_name;
+	}
+	public String getCourse_description() {
+		return course_description;
+	}
+	public void setCourse_description(String course_description) {
+		this.course_description = course_description;
 	}
 	public String getDepartment() {
 		return department;

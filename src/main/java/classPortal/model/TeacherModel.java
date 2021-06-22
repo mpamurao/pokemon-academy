@@ -1,7 +1,8 @@
 package classPortal.model;
 
 import java.util.Set;
-
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.persistence.*;
 
 
@@ -13,16 +14,28 @@ public class TeacherModel {
 	@Column
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long employee_id;
+	@Size(min=1)
+	@NotNull
 	@Column
 	private String first_name;
+	@Size(min=1)
+	@NotNull
 	@Column
 	private String last_name;
+	@Size(min=1)
+	@NotNull
 	@Column(unique=true)
 	private String email;
+	@Size(min=1)
+	@NotNull
 	@Column
 	private String password;
+	@Size(min=1)
+	@NotNull
 	@Column
 	private String department;
+	@Size(min=1)
+	@NotNull
 	@Column
 	private String employee_title;
 	
