@@ -6,6 +6,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 //student_id, first_name, last_name, email, grade_level, major, minor
 @Entity
@@ -52,7 +54,7 @@ public class StudentModel {
 			joinColumns = @JoinColumn(name = "student_id", referencedColumnName = "student_id"),
 			inverseJoinColumns = @JoinColumn(name = "course_id", referencedColumnName = "course_id")
 	)
-
+	@JsonIgnore
 	Set<CourseModel> courses_student;
 	
 	public Set<CourseModel> getCourses_student() {
