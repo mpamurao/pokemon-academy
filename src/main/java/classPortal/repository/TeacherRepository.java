@@ -11,5 +11,13 @@ public interface TeacherRepository extends CrudRepository<TeacherModel, Long> {
 	String checkEmailExists(@Param("emailInput") String emailInput);
 	
 	@Query("SELECT password FROM TeacherModel WHERE email = :emailInput")
-	String checkCorrespondingPass(@Param("emailInput") String emailInput);
+	String checkPassFromEmail(@Param("emailInput") String emailInput);
+	
+	
+	
+	
+	
+	
+//	@Query(value = "SELECT * FROM TeacherModel WHERE email = :emailInput", nativeQuery = true)
+	TeacherModel findByEmail(String emailInput);
 }

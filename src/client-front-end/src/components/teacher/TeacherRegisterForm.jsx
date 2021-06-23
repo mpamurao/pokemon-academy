@@ -42,7 +42,7 @@ class TeacherRegisterForm extends Component {
 
     createAccount = () => {        
          TeacherService
-            .addStudent(this.state)
+            .addTeacher(this.state)
             .then(res => {
                 if (res === "bad request") {
                     this.setState({validRequest: false});
@@ -76,6 +76,7 @@ class TeacherRegisterForm extends Component {
                     variant="outlined" value={this.state.employee_title} 
                     onChange={event => this.handleChange(event, "employeeTitle")} />
                 <Button type="submit" onClick={this.createAccount}>Create An Account</Button>
+                
                 {this.state.validRequest === "" 
                     ? "" 
                     : !this.state.validRequest 

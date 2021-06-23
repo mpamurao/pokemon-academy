@@ -64,8 +64,8 @@ public class TeacherController {
 		return emailInput.equalsIgnoreCase(teacherService.checkEmailExists(emailInput));
 	}
 	
-	public boolean checkCorrespondingPass(String password, String emailInput) {
-		return password.equalsIgnoreCase(teacherService.checkCorrespondingPass(emailInput));
+	public boolean checkPassFromEmail(String password, String emailInput) {
+		return password.equalsIgnoreCase(teacherService.checkPassFromEmail(emailInput));
 	}
 	
 	@PostMapping("/verify")
@@ -73,8 +73,8 @@ public class TeacherController {
 //		if email exists in DB and password matches
 		if (checkEmailExists(teacher.getEmail())) {
 			System.out.println("PASSED EMAIL CHECK");
-//			System.out.println(checkCorrespondingPass(teacher.getPassword()));
-			if (checkCorrespondingPass(teacher.getPassword(),teacher.getEmail())) {
+//			System.out.println(checkPassFromEmail(teacher.getPassword()));
+			if (checkPassFromEmail(teacher.getPassword(),teacher.getEmail())) {
 				return new ResponseEntity<>("Logging in...", HttpStatus.OK);
 			}
 		}

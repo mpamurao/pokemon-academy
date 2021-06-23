@@ -1,18 +1,19 @@
 import './App.css';
-import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
+import {HashRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
 import {CssBaseline, Container} from '@material-ui/core';
 import Home from './components/Home';
 import StudentLogin from './components/student/StudentLogin';
 import StudentPortal from './components/student/StudentPortal';
 import TeacherLogin from './components/teacher/TeacherLogin';
 import TeacherPortal from './components/teacher/TeacherPortal';
+import Header from './components/Header';
 
 function App() {
   return (
     <div className="App">
       <CssBaseline />
       <Router>
-        {/* <Header /> */}
+        <Header />
         <Switch>
           <Redirect exact from="/" to="/home" />
           <Route path="/home" component={Home} />

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const studentURL = process.env.REACT_APP_ROOT_URL || "http://localhost:8081/student";
+const studentURL = `${process.env.REACT_APP_ROOT_URL || "http://localhost:8081"}/student`;
 
 class StudentService {
     addStudent = data => {

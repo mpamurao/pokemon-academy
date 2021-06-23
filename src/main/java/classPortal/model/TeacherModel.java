@@ -3,6 +3,9 @@ package classPortal.model;
 import java.util.Set;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 
@@ -13,7 +16,7 @@ public class TeacherModel {
 	@Id
 	@Column
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long employee_id;
+	private Long employee_id;
 	@Size(min=1)
 	@NotNull
 	@Column
@@ -40,18 +43,28 @@ public class TeacherModel {
 	private String employee_title;
 	
 //	single teacher can have many courses
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
+//	@JsonIgnore - stops serialization/prevents infinite loop when going into teacher to see its associated courses
+//	and then seeing that course has teachers associated to it in method call
+//	teacher.getCourses_teacher()
+	@JsonIgnore
 	@JoinTable(
 			name = "courses_teacher",
-			joinColumns = @JoinColumn(name = "employee_id"),
-			inverseJoinColumns = @JoinColumn(name = "course_id")
+			joinColumns = @JoinColumn(name = "employee_id", referencedColumnName = "employee_id"),
+			inverseJoinColumns = @JoinColumn(name = "course_id", referencedColumnName = "course_id")
 	)
 	Set<CourseModel> courses_teacher;
 	
-	public long getEmployee_id() {
+	public Set<CourseModel> getCourses_teacher() {
+		return courses_teacher;
+	}
+	public void setCourses_teacher(Set<CourseModel> courses_teacher) {
+		this.courses_teacher = courses_teacher;
+	}
+	public Long getEmployee_id() {
 		return employee_id;
 	}
-	public void setEmployee_id(long employee_id) {
+	public void setEmployee_id(Long employee_id) {
 		this.employee_id = employee_id;
 	}
 	public String getFirst_name() {

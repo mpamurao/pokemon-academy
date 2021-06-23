@@ -102,7 +102,7 @@
 			</plugin>
 			
 			<!-- maven-resources-plugin: copy files from input resource directory to output directory as static resources-->
-			<plugin>
+		<!-- 	<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
 				<executions>
@@ -117,14 +117,14 @@
 							<resources>
 								<resource>
 									<directory>src/client-front-end/build</directory>
-									<!-- filtering = true allows dynamic placeholder variables to change a value (ex: ${resources.name}) -->
+filtering = true allows dynamic placeholder variables to change a value (ex: ${resources.name}) 
 									<filtering>true</filtering>
 								</resource>
 							</resources>
 						</configuration>
 					</execution>
 				</executions>
-			</plugin>
+			</plugin> -->
 		</plugins>
 	</build>
 

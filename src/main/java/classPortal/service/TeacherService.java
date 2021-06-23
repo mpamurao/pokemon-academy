@@ -44,7 +44,13 @@ public class TeacherService {
 	}
 	
 //	verify password matches to corresponding email
-	public String checkCorrespondingPass(String emailInput) {
-		return teacherRepo.checkCorrespondingPass(emailInput);
+	public String checkPassFromEmail(String emailInput) {
+		return teacherRepo.checkPassFromEmail(emailInput);
 	}
+	
+// get teacher from email
+	public TeacherModel getTeacherFromEmail(String emailInput) {
+		return teacherRepo.findByEmail(emailInput);
+	}
+
 }
