@@ -27,8 +27,9 @@ class TeacherLoginForm extends Component {
     }
 
     clickEnter = () => {
+        console.log(this.state.email, this.state.password)
         TeacherService
-            .verify(this.props.email, this.props.password)
+            .verify(this.state.email, this.state.password)
             .then(res => {
                 if (res === "invalid request") {
                     this.setState({validRequest: false});
@@ -47,10 +48,10 @@ class TeacherLoginForm extends Component {
             <div>
                 <FormControl className={classes.form}>
                     <TextField required error={!this.state.email && !this.state.validRequest} id="teacher-email" label="Email" 
-                        variant="outlined" value={this.props.email} className={classes.formFields}
+                        variant="outlined" value={this.state.email} className={classes.formFields}
                         onChange={event => this.handleChange(event, "email")} />
                     <TextField required error={!this.state.password && !this.state.validRequest} id="teacher-password" label="Password" 
-                        variant="outlined" value={this.props.password} className={classes.formFields}
+                        variant="outlined" value={this.state.password} className={classes.formFields}
                         onChange={event => this.handleChange(event, "password")} />
                 
                     <Button onClick={this.clickEnter} className={classes.buttonSubmit}>Enter</Button>

@@ -16,6 +16,7 @@ class TeacherService {
 
    // verify teacher login info
    verify = (email, password) => {
+      console.log(email, password)
       const data = {
          email,
          password

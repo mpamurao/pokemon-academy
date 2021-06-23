@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import TeacherPortalNavBar from '../TeacherPortalNavBar';
-import {Container} from '@material-ui/core';
+import {Container, Typography} from '@material-ui/core';
 import TeacherClassRoster from './TeacherClassRoster';
 
 class TeacherPortal extends Component {
@@ -28,17 +28,20 @@ class TeacherPortal extends Component {
     }
 
     render() {
+
         return (
             <div>
-                TEACHER PORTAL
-                <TeacherPortalNavBar  setCurrentPage = {this.setCurrentPage} />
+                <Container>
+                    <Typography>TEACHER PORTAL</Typography>
+                    <TeacherPortalNavBar setCurrentPage = {this.setCurrentPage} />
 
-                {this.state.currentPage === "intro" 
-                    ? <Container>Please select what to do</Container>
-                    : this.state.currentPage === "classRoster"
-                        ? <TeacherClassRoster />
-                        : <Container>Logging out</Container>
-                }
+                    {this.state.currentPage === "intro" 
+                        ? <Container>Please select an item from the menu</Container>
+                        : this.state.currentPage === "classRoster"
+                            ? <TeacherClassRoster />
+                            : <Container>Logging out</Container>
+                    }
+                </Container>
             </div>
         );
     }
