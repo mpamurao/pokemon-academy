@@ -1,8 +1,8 @@
 const homeStyles = {
     welcomePage: {
-        // border:"1px solid black",
-        width:"100vw",
-        justifyContent:"center",
+        border:"1px solid black",
+        width:"50vw",
+        marginTop:"10%"
     },
     welcome: {
         // border: "1px solid blue",
@@ -11,6 +11,7 @@ const homeStyles = {
         alignContent:"center",
         padding:"2rem",
         fontWeight:"bold",
+        textAlign:"center",
     },
     pickIdentity: {
         // border:"1px solid red",
