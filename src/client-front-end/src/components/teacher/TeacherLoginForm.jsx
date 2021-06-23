@@ -35,7 +35,7 @@ class TeacherLoginForm extends Component {
                 }
                 if (res === "logging in") {
                     this.setState({validRequest:true});
-                    window.history.pushState({email: this.props.state.email},'', "/#/teacher/portal");
+                    window.history.pushState({email: this.state.email},'', "/#/teacher/portal");
                     window.location.reload();
                 }
             });
@@ -54,15 +54,18 @@ class TeacherLoginForm extends Component {
                         onChange={event => this.handleChange(event, "password")} />
                 
                     <Button onClick={this.clickEnter} className={classes.buttonSubmit}>Enter</Button>
-                    {this.state.validRequest === "" 
+                </FormControl>
+
+                {this.state.validRequest === "" 
                         ? "" 
                         : !this.state.validRequest 
-                            ? <Container>
-                                <b>Invalid email and/or password. Please try again.</b>
+                            ? <Container className={classes.notice}>
+                               Invalid email and/or password. Please try again.
                             </Container>
-                            : <Container><b>Logging in...</b></Container>
+                            : <Container className={classes.notice}>
+                                Logging in...
+                            </Container>
                     }
-                </FormControl>
             </div>
         );
     }

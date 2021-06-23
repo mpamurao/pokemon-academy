@@ -15,6 +15,7 @@ const loginPageStyles = {
         display:"flex",
         flexFlow:"column",
         justifyContent:"center",
+        marginBottom:"2rem",
 
     },
     button: {
@@ -37,6 +38,8 @@ const loginPageStyles = {
     form: {
         // border:"1px solid blue",
         display:"flex",
+        flexFlow:"column wrap",
+        alignContent:"center",
         margin:"2%",
     },
     formFields: {
@@ -46,8 +49,14 @@ const loginPageStyles = {
     },
     buttonSubmit: {
         color:"white",
-        backgroundColor:"rgb(230,0,0)",
+        backgroundColor:"rgb(210,0,0)",
         width:"25%",
+    },
+    notice: {
+        // border:"1px solid black",
+        padding:"1rem",
+        fontWeight:"bold",
+
     }
 }
 

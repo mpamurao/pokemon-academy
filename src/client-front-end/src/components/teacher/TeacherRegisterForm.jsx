@@ -14,7 +14,7 @@ class TeacherRegisterForm extends Component {
             password:"",
             department:"",
             employee_title:"",
-            validRequest:""
+            validRequest:"",
         }
     }
 
@@ -54,41 +54,48 @@ class TeacherRegisterForm extends Component {
     }
     
     render() {
+        const {classes} = this.props;
         return (
             <div>
-                <FormControl>
-                    Register:                  
-                    <TextField required id="teacher-firstName" label="First Name" 
+                <FormControl className={classes.form}>                
+                    <TextField required error={!this.state.first_name && !this.state.validRequest} 
+                        id="teacher-firstName" label="First Name" className={classes.formFields}
                         variant="outlined" value={this.state.first_name} 
                         onChange={event => this.handleChange(event, "firstName")} />
-                    <TextField required id="teacher-lastName" label="Last Name" 
+                    <TextField required error={!this.state.last_name && !this.state.validRequest} 
+                        id="teacher-lastName" label="Last Name" className={classes.formFields}
                         variant="outlined" value={this.state.last_name} 
                         onChange={event => this.handleChange(event, "lastName")} />
-                    <TextField required id="teacher-email" label="Email" 
+                    <TextField required error={!this.state.email && !this.state.validRequest}
+                        id="teacher-email" label="Email" className={classes.formFields}
                         variant="outlined" value={this.state.email} 
                         onChange={event => this.handleChange(event, "email")} />
-                    <TextField required id="teacher-password" label="Password" 
+                    <TextField required error={!this.state.password && !this.state.validRequest}
+                        id="teacher-password" label="Password" className={classes.formFields}
                         variant="outlined" value={this.state.password} 
                         onChange={event => this.handleChange(event, "password")} />
-                    <TextField required id="teacher-department" label="Department" 
+                    <TextField required error={!this.state.department && !this.state.validRequest}
+                        id="teacher-department" label="Department" className={classes.formFields}
                         variant="outlined" value={this.state.department} 
                         onChange={event => this.handleChange(event, "department")} />
-                    <TextField required id="teacher-title" label="Employee Title" 
+                    <TextField required error={!this.state.employee_title && !this.state.validRequest}
+                        id="teacher-title" label="Employee Title" className={classes.formFields}
                         variant="outlined" value={this.state.employee_title} 
                         onChange={event => this.handleChange(event, "employeeTitle")} />
-                    <Button type="submit" onClick={this.createAccount}>Create An Account</Button>
-                    
-                    {this.state.validRequest === "" 
-                        ? "" 
-                        : !this.state.validRequest 
-                            ? <Container>
-                                Missing info. Please complete the form.
-                            </Container>
-                            : <Container>
-                                Account created. Please proceed to log in.
-                            </Container>
-                    }
+                    <Button onClick={this.createAccount} className={classes.buttonSubmit}>Create Account</Button>
                 </FormControl>
+
+                {this.state.validRequest === "" 
+                    ? "" 
+                    : !this.state.validRequest 
+                        ? <Container className={classes.notice}>
+                            There was an error processing your application. Please try again.
+                        </Container>
+                        : <Container className={classes.notice}>
+                            Account created. Please proceed to log in.
+                        </Container>
+                }
+                
             </div>
         );
     }
