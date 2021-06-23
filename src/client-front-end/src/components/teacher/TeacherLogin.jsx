@@ -12,8 +12,6 @@ class TeacherLogin extends Component {
         this.state = {
             // identity = teacher
             identity:"",
-            email: "",
-            password: "",
             form:"login",
         }
     }
@@ -30,18 +28,6 @@ class TeacherLogin extends Component {
 
     login = () => {
         this.setState({form:"login"});
-    }
-
-    // handleChange for login form
-    handleChange = (event, input) => {
-        event.preventDefault();
-
-        if (input === "email") {
-            this.setState({email:event.target.value});
-        }
-        if (input === "password") {
-            this.setState({password:event.target.value});
-        }
     }
 
     render() {
@@ -70,8 +56,7 @@ class TeacherLogin extends Component {
                     </Container>
                     
                     {this.state.form === "login" ? 
-                        <TeacherLoginForm state={this.state} classes={classes}
-                            handleChange={this.handleChange} />
+                        <TeacherLoginForm classes={classes} />
                         : <TeacherRegisterForm classes={classes}/>
                         
                     }

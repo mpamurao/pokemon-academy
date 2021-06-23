@@ -8,7 +8,21 @@ class TeacherLoginForm extends Component {
         super()
 
         this.state = {
+            email:"",
+            password:"",
             validRequest: "",
+        }
+    }
+
+    // handleChange for login form
+    handleChange = (event, input) => {
+        event.preventDefault();
+
+        if (input === "email") {
+            this.setState({email:event.target.value});
+        }
+        if (input === "password") {
+            this.setState({password:event.target.value});
         }
     }
 
@@ -28,16 +42,16 @@ class TeacherLoginForm extends Component {
     }
 
     render() {
-        const {classes, state} = this.props;
+        const {classes} = this.props;
         return (
             <div>
                 <FormControl className={classes.form}>
-                    <TextField required error={!state.email && !this.state.validRequest} id="teacher-email" label="Email" 
+                    <TextField required error={!this.state.email && !this.state.validRequest} id="teacher-email" label="Email" 
                         variant="outlined" value={this.props.email} className={classes.formFields}
-                        onChange={event => this.props.handleChange(event, "email")} />
-                    <TextField required error={!state.password && !this.state.validRequest} id="teacher-password" label="Password" 
+                        onChange={event => this.handleChange(event, "email")} />
+                    <TextField required error={!this.state.password && !this.state.validRequest} id="teacher-password" label="Password" 
                         variant="outlined" value={this.props.password} className={classes.formFields}
-                        onChange={event => this.props.handleChange(event, "password")} />
+                        onChange={event => this.handleChange(event, "password")} />
                 
                     <Button onClick={this.clickEnter} className={classes.buttonSubmit}>Enter</Button>
                     {this.state.validRequest === "" 
