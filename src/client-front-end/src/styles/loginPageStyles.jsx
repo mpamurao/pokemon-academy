@@ -42,19 +42,26 @@ const loginPageStyles = {
         alignContent:"center",
         margin:"2%",
     },
+    subForm: {
+        // border:"1px solid green",
+        padding:"0",
+    },
     formFields: {
         // border:"1px solid green",
-        width:"50%",
-        margin:"0.5rem 0rem 0.5rem 0rem",
+        width:"45%",
+        margin:"0.5rem 0.5rem 0.5rem 0.5rem",
     },
     buttonSubmit: {
         color:"white",
         backgroundColor:"rgb(210,0,0)",
         width:"25%",
+        marginTop:"1rem",
+        display:"flex",
+        alignSelf:"left",
     },
     notice: {
         // border:"1px solid black",
-        padding:"1rem",
+        padding:"0.5rem",
         fontWeight:"bold",
 
     }

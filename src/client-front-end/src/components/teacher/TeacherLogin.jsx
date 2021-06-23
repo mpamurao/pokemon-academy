@@ -12,7 +12,7 @@ class TeacherLogin extends Component {
         this.state = {
             // identity = teacher
             identity:"",
-            form:"login",
+            form:"register",
         }
     }
 
