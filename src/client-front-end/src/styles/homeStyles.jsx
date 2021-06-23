@@ -1,15 +1,16 @@
 const homeStyles = {
     welcomePage: {
-        border:"1px solid black",
+        border:"4px outset rgb(230,0,0)",
         width:"50vw",
-        marginTop:"10%"
+        marginTop:"5%",
+        padding:"2rem",
     },
     welcome: {
         // border: "1px solid blue",
         display:"flex",
         flexFlow:"column wrap",
         alignContent:"center",
-        padding:"2rem",
+        padding:"1rem",
         fontWeight:"bold",
         textAlign:"center",
     },
@@ -21,9 +22,10 @@ const homeStyles = {
 
     },
     identity: {
-        border:"2px solid red",
+        border:"3px outset rgb(230,0,0)",
         padding:"2rem",
         margin:"1rem",
+        fontSize:"12pt",
     },
 
     link: {
