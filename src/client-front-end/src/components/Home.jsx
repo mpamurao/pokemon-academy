@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import homeStyles from '../styles/homeStyles';
-import {Container, Button, withStyles} from '@material-ui/core';
+import {Container, Typography, Button, withStyles} from '@material-ui/core';
 import {Link} from 'react-router-dom';
 
 class Home extends Component {
@@ -9,21 +9,25 @@ class Home extends Component {
         return (
             <div className={classes.welcomePage}>
                 <Container className={classes.welcome}>
-                    WELCOME TO THE POKEMON TRAINING ACADEMY
+                    <Typography variant="h6" gutterBottom>WELCOME TO THE POKEMON TRAINING ACADEMY</Typography>
+                    <Typography align="center">Please choose a portal:</Typography>
                 </Container>
                 
                 <Container className={classes.pickIdentity}>
-                    <p>Please choose a portal:</p>
-                    <Link to={{
+                    <Link style={{textDecoration:"none"}} 
+                        to={{
                             pathname:"/student", 
-                            state:{identity:"student"}}}>
+                            state:{identity:"student"}}}
+                    >
                         <Button className={classes.identity}>
                             Student
                         </Button>
                     </Link>
-                    <Link to={{
-                        pathname:"/teacher", 
-                        state:{identity:"teacher"}}}>
+                    <Link style={{textDecoration:"none"}} 
+                        to={{
+                            pathname:"/teacher", 
+                            state:{identity:"teacher"}}}
+                    >
                         <Button className={classes.identity}>
                             Employee
                         </Button>

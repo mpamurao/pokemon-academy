@@ -3,6 +3,9 @@ package classPortal.model;
 import java.util.Set;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 
@@ -40,7 +43,11 @@ public class TeacherModel {
 	private String employee_title;
 	
 //	single teacher can have many courses
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.EAGER)
+//	@JsonIgnore - stops serialization/prevents infinite loop when going into teacher to see its associated courses
+//	and then seeing that course has teachers associated to it in method call
+//	teacher.getCourses_teacher()
+	@JsonIgnore
 	@JoinTable(
 			name = "courses_teacher",
 			joinColumns = @JoinColumn(name = "employee_id", referencedColumnName = "employee_id"),
@@ -48,6 +55,12 @@ public class TeacherModel {
 	)
 	Set<CourseModel> courses_teacher;
 	
+	public Set<CourseModel> getCourses_teacher() {
+		return courses_teacher;
+	}
+	public void setCourses_teacher(Set<CourseModel> courses_teacher) {
+		this.courses_teacher = courses_teacher;
+	}
 	public Long getEmployee_id() {
 		return employee_id;
 	}

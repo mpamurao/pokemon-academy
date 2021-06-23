@@ -7,9 +7,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import classPortal.DTO.TeacherOfCourses;
 import classPortal.model.CourseModel;
 import classPortal.model.TeacherModel;
 import classPortal.service.CourseService;
+import classPortal.service.TeacherService;
 
 @RestController
 @RequestMapping("/course")
@@ -17,6 +19,8 @@ import classPortal.service.CourseService;
 public class CourseController {
 	@Autowired
 	CourseService courseService;
+	@Autowired
+	TeacherService teacherService;
 	
 //	CRUD
 	
@@ -33,14 +37,25 @@ public class CourseController {
 	}
 	
 	@PostMapping("/create")
-//	create a new course
-	public ResponseEntity<Object> addCourse(@Valid @RequestBody CourseModel course) {
+//	create a new course and associate the teacher that created it
+	public ResponseEntity<Object> addCourse(@Valid @RequestBody TeacherOfCourses teacherOfCourses) {
 //		save the course to course_directory
-//		CourseModel createdCourse = courseService.addCourse(course);
-////		get course and teacher id
-//		long courseId = createdCourse.getCourse_id();
-//		long employeeId = teacher.getEmployee_id();
-		return new ResponseEntity<>(courseService.addCourse(course), HttpStatus.OK);
+		CourseModel course = teacherOfCourses.getCourseModel();
+//		save course to table
+		CourseModel createdCourse = courseService.addCourse(course);
+		
+		String email = teacherOfCourses.getEmail();
+		
+//		get the teacher model associated to the email
+		TeacherModel teacher = teacherService.getTeacherFromEmail(email);
+		
+//		courses_teacher is a Set/Collection of CourseModels
+//		add the CourseModel createdCourse to the teacher's courses_teacher collection
+		teacher.getCourses_teacher().add(createdCourse);
+		teacherService.addTeacher(teacher);
+		
+//		return data of courses that are associated with single teacher
+		return new ResponseEntity<>(teacher.getCourses_teacher(), HttpStatus.OK);
 	}
 	
 	@PatchMapping("/directory/{course_id}")

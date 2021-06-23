@@ -32,11 +32,24 @@ public class CourseModel {
 	private int course_size;
 	
 //	single course can have many students and teachers
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy="courses_student")
+
+	@ManyToMany(fetch = FetchType.EAGER, mappedBy="courses_student")
 	Set<StudentModel> students;
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy="courses_teacher")
+	@ManyToMany(fetch = FetchType.EAGER, mappedBy="courses_teacher")
 	Set<TeacherModel> teachers;
 	
+	public Set<StudentModel> getStudents() {
+		return students;
+	}
+	public void setStudents(Set<StudentModel> students) {
+		this.students = students;
+	}
+	public Set<TeacherModel> getTeachers() {
+		return teachers;
+	}
+	public void setTeachers(Set<TeacherModel> teachers) {
+		this.teachers = teachers;
+	}
 	public Long getCourse_id() {
 		return course_id;
 	}

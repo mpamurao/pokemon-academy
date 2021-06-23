@@ -46,14 +46,21 @@ public class StudentModel {
 	
 //	single student can have many courses
 //	create new table with student_id and course_id
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(
 			name = "courses_student",
 			joinColumns = @JoinColumn(name = "student_id", referencedColumnName = "student_id"),
 			inverseJoinColumns = @JoinColumn(name = "course_id", referencedColumnName = "course_id")
 	)
+
 	Set<CourseModel> courses_student;
 	
+	public Set<CourseModel> getCourses_student() {
+		return courses_student;
+	}
+	public void setCourses_student(Set<CourseModel> courses_student) {
+		this.courses_student = courses_student;
+	}
 	public Long getStudent_id() {
 		return student_id;
 	}
