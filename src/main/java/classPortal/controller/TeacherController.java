@@ -80,4 +80,12 @@ public class TeacherController {
 		}
 		return new ResponseEntity<>("Invalid email and/or password.", HttpStatus.UNAUTHORIZED);
 	}
+	
+	@PostMapping("/courses")
+//	get course that are associated with the teacher
+	public ResponseEntity<Object> getCoursesByTeacher(@RequestBody TeacherModel teacher) {
+//		get the teacher model associated to the email in request body
+		TeacherModel currentTeacher = teacherService.getTeacherFromEmail(teacher.getEmail());
+		return new ResponseEntity<>(teacher.getCourses_teacher(), HttpStatus.OK);
+	}
 }

@@ -41,10 +41,6 @@ public class StudentModel {
 	@NotNull
 	@Column
 	private String major;
-	@Size(min=1)
-	@NotNull
-	@Column
-	private String minor;
 	
 //	single student can have many courses
 //	create new table with student_id and course_id
@@ -104,12 +100,6 @@ public class StudentModel {
 	}
 	public void setMajor(String major) {
 		this.major = major;
-	}
-	public String getMinor() {
-		return minor;
-	}
-	public void setMinor(String minor) {
-		this.minor = minor;
 	}
 	
 }

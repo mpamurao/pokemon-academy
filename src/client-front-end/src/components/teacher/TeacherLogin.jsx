@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Container, Button, withStyles, FormControl} from '@material-ui/core';
+import {Container, withStyles, Typography, ButtonBase} from '@material-ui/core';
 import loginPageStyles from '../../styles/loginPageStyles';
 import TeacherLoginForm from './TeacherLoginForm';
 import TeacherRegisterForm from './TeacherRegisterForm';
@@ -12,8 +12,6 @@ class TeacherLogin extends Component {
         this.state = {
             // identity = teacher
             identity:"",
-            email: "",
-            password: "",
             form:"login",
         }
     }
@@ -32,37 +30,36 @@ class TeacherLogin extends Component {
         this.setState({form:"login"});
     }
 
-    // handleChange for login form
-    handleChange = (event, input) => {
-        event.preventDefault();
-
-        if (input === "email") {
-            this.setState({email:event.target.value});
-        }
-        if (input === "password") {
-            this.setState({password:event.target.value});
-        }
-    }
-
     render() {
         const {classes} = this.props;
         return (
             <div>
                 <Container className={classes.welcome}>
-                    WELCOME TEACHER
+                    <Typography variant="h6" gutterBottom>
+                        WELCOME {this.state.identity.toUpperCase()}
+                    </Typography>
                 </Container>
-                <Container>
-                    <FormControl className={classes.studentLogin} >
-                        <Button type="submit" onClick={this.login}> Log In </Button>
-                        <Button type="submit" onClick={this.signUp}> Sign Up </Button>
-
-                        {this.state.form === "login" ? 
-                            <TeacherLoginForm email={this.state.email} password={this.state.password} 
-                                handleChange={this.handleChange} />
-                            : <TeacherRegisterForm />
-                            
-                        }
-                    </FormControl> 
+                <Container className={classes.loginPage}>
+                    <Container style={{borderBottom:"1px solid red"}}>                    
+                        <ButtonBase variant="text" onClick={this.login} 
+                            className={this.state.form === "login" 
+                                ? `${classes.buttonFocused}` : `${classes.button}`}
+                        >
+                            Login
+                        </ButtonBase>
+                        <ButtonBase variant="text" onClick={this.signUp} 
+                            className={this.state.form === "register" 
+                                ? `${classes.buttonFocused}` : `${classes.button}`}
+                        >
+                            Sign Up
+                        </ButtonBase>
+                    </Container>
+                    
+                    {this.state.form === "login" ? 
+                        <TeacherLoginForm classes={classes} />
+                        : <TeacherRegisterForm classes={classes}/>
+                        
+                    }
                 </Container>
             </div>
         );

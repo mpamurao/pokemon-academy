@@ -37,7 +37,7 @@ public class StudentController {
 	public ResponseEntity<Object> addStudent(@Valid @RequestBody StudentModel student) {
 		//	return bad response if conditions are met (value is null in student body request)
 		if (student.getFirst_name() == null || student.getLast_name() == null || student.getEmail() == null 
-				|| student.getPassword() == null || student.getMajor() == null || student.getMinor() == null) {
+				|| student.getPassword() == null || student.getMajor() == null) {
 			return new ResponseEntity<>("Invalid input", HttpStatus.BAD_REQUEST);
 		}
 		if (checkEmailExists(student.getEmail())) {

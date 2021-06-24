@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Container, Button,TextField} from '@material-ui/core';
+import {Container, Button,TextField, FormControl} from '@material-ui/core';
 import TeacherService from '../../service/TeacherService';
 
 
@@ -14,29 +14,19 @@ class TeacherRegisterForm extends Component {
             password:"",
             department:"",
             employee_title:"",
-            validRequest:""
+            validRequest:"",
         }
     }
 
     handleChange = (event, input) => {
         event.preventDefault();
-        if (input === "firstName") {
-            this.setState({first_name: event.target.value});
-        }
-        if (input === "lastName") {
-            this.setState({last_name:event.target.value});
-        }
-        if (input === "email") {
-            this.setState({email:event.target.value});
-        }
-        if (input === "password") {
-            this.setState({password:event.target.value});
-        }
-        if (input === "department") {
-            this.setState({department:event.target.value});
-        }
-        if (input === "employeeTitle") {
-            this.setState({employee_title:event.target.value});
+        const textFields =
+            ["first_name", "last_name", "department", "employee_title", "email", "password"];
+
+        for (let i = 0; i < textFields.length; i++) {
+            if (textFields[i] === input) {
+                this.setState({[input]: event.target.value});
+            }
         }
     }
 
@@ -44,8 +34,11 @@ class TeacherRegisterForm extends Component {
          TeacherService
             .addTeacher(this.state)
             .then(res => {
-                if (res === "bad request") {
-                    this.setState({validRequest: false});
+                if (res === "Email already exists") {
+                    this.setState({validRequest: res});
+                }
+                if (res.error === "Bad Request") {
+                    this.setState({validRequest: res.error});
                 }
                 if (res === "account created") {
                     this.setState({validRequest:true});
@@ -54,39 +47,59 @@ class TeacherRegisterForm extends Component {
     }
     
     render() {
+        const {classes} = this.props;
         return (
             <div>
-                Register:                  
-                <TextField required id="teacher-firstName" label="First Name" 
-                    variant="outlined" value={this.state.first_name} 
-                    onChange={event => this.handleChange(event, "firstName")} />
-                <TextField required id="teacher-lastName" label="Last Name" 
-                    variant="outlined" value={this.state.last_name} 
-                    onChange={event => this.handleChange(event, "lastName")} />
-                <TextField required id="teacher-email" label="Email" 
-                    variant="outlined" value={this.state.email} 
-                    onChange={event => this.handleChange(event, "email")} />
-                <TextField required id="teacher-password" label="Password" 
-                    variant="outlined" value={this.state.password} 
-                    onChange={event => this.handleChange(event, "password")} />
-                <TextField required id="teacher-department" label="Department" 
-                    variant="outlined" value={this.state.department} 
-                    onChange={event => this.handleChange(event, "department")} />
-                <TextField required id="teacher-title" label="Employee Title" 
-                    variant="outlined" value={this.state.employee_title} 
-                    onChange={event => this.handleChange(event, "employeeTitle")} />
-                <Button type="submit" onClick={this.createAccount}>Create An Account</Button>
-                
-                {this.state.validRequest === "" 
-                    ? "" 
-                    : !this.state.validRequest 
-                        ? <Container>
-                            Missing info. Please complete the form.
+                <FormControl className={classes.form}>  
+                    <Container className={classes.subForm}>             
+                        <TextField required error={!this.state.first_name && !this.state.validRequest} 
+                            id="teacher-firstName" label="First Name" className={classes.formFields}
+                            variant="outlined" value={this.state.first_name} 
+                            onChange={event => this.handleChange(event, "first_name")} />
+                        <TextField required error={!this.state.last_name && !this.state.validRequest} 
+                            id="teacher-lastName" label="Last Name" className={classes.formFields}
+                            variant="outlined" value={this.state.last_name} 
+                            onChange={event => this.handleChange(event, "last_name")} />
+                        <TextField required error={!this.state.department && !this.state.validRequest}
+                            id="teacher-department" label="Department" className={classes.formFields}
+                            variant="outlined" value={this.state.department} 
+                            onChange={event => this.handleChange(event, "department")} />
+                        <TextField required error={!this.state.employee_title && !this.state.validRequest}
+                            id="teacher-title" label="Employee Title" className={classes.formFields}
+                            variant="outlined" value={this.state.employee_title} 
+                            onChange={event => this.handleChange(event, "employee_title")} />
+                        <TextField required error={!this.state.email && !this.state.validRequest}
+                            id="teacher-email" label="Email" className={classes.formFields}
+                            variant="outlined" value={this.state.email} 
+                            onChange={event => this.handleChange(event, "email")} />
+                        <TextField required error={!this.state.password && !this.state.validRequest}
+                            id="teacher-password" label="Password" className={classes.formFields}
+                            variant="outlined" value={this.state.password} 
+                            onChange={event => this.handleChange(event, "password")} />
+                    </Container>
+                    <Container>
+                        <Button onClick={this.createAccount} className={classes.buttonSubmit}>
+                            Create Account
+                        </Button>
+                    </Container>
+                </FormControl>
+
+                {this.state.validRequest === true
+                    ? <Container className={classes.notice}>
+                        Account created. Please proceed to log in.
+                    </Container>
+                    : this.state.validRequest === "Bad Request"
+                        ? <Container className={classes.notice}>
+                            There was an error processing your application. Please try again.
                         </Container>
-                        : <Container>
-                            Account created. Please proceed to log in.
-                        </Container>
+                        : this.state.validRequest === "Email already exists"
+                            ? <Container className={classes.notice}>
+                                Email already exists. Please log in with existing email.
+                            </Container>
+                                : ""
+                                
                 }
+                
             </div>
         );
     }

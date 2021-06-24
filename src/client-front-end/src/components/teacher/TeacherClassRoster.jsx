@@ -3,12 +3,17 @@ import {Container, Button} from '@material-ui/core';
 import CreateCourse from './CreateCourse';
 
 class TeacherClassRoster extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
 
         this.state = {
             viewMode: "view",
+            email:"",
         }
+    }
+    
+    componentDidMount() {
+        this.setState({email:this.props.email});
     }
 
     changeView = (viewMode) => {
@@ -31,7 +36,7 @@ class TeacherClassRoster extends Component {
                 </Container>
 
                 {/* create a new course */}
-                {this.state.viewMode === "createCourse" ? <CreateCourse /> : ""}
+                {this.state.viewMode === "createCourse" ? <CreateCourse email={this.state.email}/> : ""}
 
             </div>
         );

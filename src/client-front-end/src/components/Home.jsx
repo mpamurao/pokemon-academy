@@ -9,8 +9,12 @@ class Home extends Component {
         return (
             <div className={classes.welcomePage}>
                 <Container className={classes.welcome}>
-                    <Typography variant="h6" gutterBottom>WELCOME TO THE POKEMON TRAINING ACADEMY</Typography>
-                    <Typography align="center">Please choose a portal:</Typography>
+                    <Typography variant="h6" gutterBottom>
+                        WELCOME TO THE POKEMON TRAINING ACADEMY
+                    </Typography>
+                    <Typography style={{fontSize:"14pt"}}>
+                        Please choose a portal:
+                    </Typography>
                 </Container>
                 
                 <Container className={classes.pickIdentity}>
@@ -19,7 +23,7 @@ class Home extends Component {
                             pathname:"/student", 
                             state:{identity:"student"}}}
                     >
-                        <Button className={classes.identity}>
+                        <Button className={classes.identity} variant="outlined">
                             Student
                         </Button>
                     </Link>
@@ -28,13 +32,11 @@ class Home extends Component {
                             pathname:"/teacher", 
                             state:{identity:"teacher"}}}
                     >
-                        <Button className={classes.identity}>
-                            Employee
+                        <Button className={classes.identity} variant="outlined">
+                            Teacher
                         </Button>
                     </Link>
                 </Container>
-
-
             </div>
         );
     }
