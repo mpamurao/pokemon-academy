@@ -1,10 +1,11 @@
-import { FormControl, TextField, Button, Container } from '@material-ui/core';
+import { FormControl, TextField, Button, Container, withStyles } from '@material-ui/core';
 import React, { Component } from 'react';
 import CourseService from '../../service/CourseService';
+import portalStyles from '../../styles/portalStyles';
 
 class CreateCourse extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
 
         this.state = {
             course_name: "",
@@ -12,13 +13,21 @@ class CreateCourse extends Component {
             course_size: "",
             department: "",
             validRequest:"",
+            email:"",
         }
+    }
+
+    componentDidMount() {
+        console.log("mount")
+        console.log(this.props.email)
+        this.setState({email:this.props.email});
     }
 
     handleChange = (event, input) => {
         event.preventDefault();
         
-        const inputOptions = ["course_name", "course_description", "course_size", "department"];
+        const inputOptions = 
+            ["course_name", "course_description", "course_size", "department"];
         for (let i = 0; i < inputOptions.length; i++) {
             if (inputOptions[i] === input) {
                 this.setState({[input]: event.target.value});
@@ -27,7 +36,16 @@ class CreateCourse extends Component {
     }
 
     createClass = () => {
-        CourseService.createCourse(this.state)
+        let data = {
+            courseModel: {
+                course_name: this.state.course_name,
+                course_description: this.state.course_description,
+                course_size: this.state.course_size,
+                department: this.state.department,
+            },
+            email:this.state.email,
+        }
+        CourseService.createCourse(data)
             .then(res => {
                 if (res === "bad request") {
                     this.setState({validRequest: false});
@@ -39,32 +57,38 @@ class CreateCourse extends Component {
     }
 
     render() {
+        const {classes} = this.props;
         return (
             <div>
-                CreatingCourse
                 <FormControl>
                 {/* course_id, course_name, course_size, department */}
-                    <TextField required id="courseName" label="Course Name" 
+                    <TextField required error={!this.state.validRequest && !this.state.course_name} 
+                        id="courseName" label="Course Name" 
                         variant="outlined" value={this.state.course_name} 
                         onChange={event => this.handleChange(event, "course_name")} />
-                    <TextField required id="courseId" label="Course Description" 
+                    <TextField required error={!this.state.validRequest && !this.state.course_description}
+                        id="courseId" label="Course Description" 
                         variant="outlined" value={this.state.course_description} 
                         onChange={event => this.handleChange(event, "course_description")} />
-                    <TextField required id="courseSize" label="Course Size" 
+                    <TextField required error={!this.state.validRequest && !this.state.course_size}
+                        id="courseSize" label="Course Size" 
                         variant="outlined" value={this.state.course_size} 
                         onChange={event => this.handleChange(event, "course_size")} />
-                    <TextField required id="department" label="Department" 
+                    <TextField required error={!this.state.validRequest && !this.state.department}
+                        id="department" label="Department" 
                         variant="outlined" value={this.state.department} 
                         onChange={event => this.handleChange(event, "department")} />
-                    <Button type="submit" onClick={this.createClass}>Create Class</Button>
+                    <Button type="submit" onClick={this.createClass}>
+                        Create Class
+                    </Button>
 
                     {this.state.validRequest === "" 
                         ? "" 
                         : !this.state.validRequest 
-                            ? <Container>
+                            ? <Container className={classes.notice}>
                                 Missing info. Please complete the form.
                             </Container>
-                            : <Container>
+                            : <Container className={classes.notice}>
                                 Course created successfully.
                             </Container>
                     }
@@ -74,4 +98,4 @@ class CreateCourse extends Component {
     }
 }
 
-export default CreateCourse;
+export default withStyles(portalStyles)(CreateCourse);

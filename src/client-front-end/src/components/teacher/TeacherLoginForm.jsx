@@ -1,6 +1,25 @@
-import React, { Component } from 'react';
+import React, { Component, useState} from 'react';
 import {Container, Button, TextField, FormControl} from '@material-ui/core';
 import TeacherService from '../../service/TeacherService';
+import {useHistory} from 'react-router';
+import {withRouter} from 'react-router';
+
+// function TeacherLoginForm(props) {
+//     const history = useHistory();
+//     const [email, setEmail] = useState("");
+//     const [password, setPassword] = useState("");
+//     const [validRequest, setValidRequest] = useState("");
+//     return (
+        
+
+//         <div>
+            
+//         </div>
+//     );
+// }
+
+// export default TeacherLoginForm;
+
 
 
 class TeacherLoginForm extends Component {
@@ -36,8 +55,12 @@ class TeacherLoginForm extends Component {
                 }
                 if (res === "logging in") {
                     this.setState({validRequest:true});
-                    window.history.pushState({email: this.state.email},'', "/#/teacher/portal");
-                    window.location.reload();
+                    this.props.history.push({
+                        pathname: "/teacher/portal",
+                        state: {email:this.state.email}
+                    })
+                        
+                    // window.location.reload();
                 }
             });
     }
@@ -72,4 +95,4 @@ class TeacherLoginForm extends Component {
     }
 }
 
-export default TeacherLoginForm;
+export default withRouter(TeacherLoginForm);

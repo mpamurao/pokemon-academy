@@ -20,7 +20,8 @@ class TeacherRegisterForm extends Component {
 
     handleChange = (event, input) => {
         event.preventDefault();
-        const textFields = ["first_name", "last_name", "department", "employee_title", "email", "password"];
+        const textFields =
+            ["first_name", "last_name", "department", "employee_title", "email", "password"];
 
         for (let i = 0; i < textFields.length; i++) {
             if (textFields[i] === input) {

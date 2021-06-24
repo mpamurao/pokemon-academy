@@ -15,7 +15,7 @@ class TeacherPortal extends Component {
     }
 
     componentDidMount() {
-        console.log("portal mount")
+        console.log("hello", this.props.location.state)
         if (this.props.location.state) {
             const {state} = this.props.location;
             this.setState({email:state.email});
@@ -38,7 +38,7 @@ class TeacherPortal extends Component {
                     {this.state.currentPage === "intro" 
                         ? <Container>Please select an item from the menu</Container>
                         : this.state.currentPage === "classRoster"
-                            ? <TeacherClassRoster />
+                            ? <TeacherClassRoster email={this.state.email} />
                             : <Container>Logging out</Container>
                     }
                 </Container>
