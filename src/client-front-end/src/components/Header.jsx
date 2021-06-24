@@ -1,7 +1,6 @@
 import React from 'react';
 import { Typography, Avatar } from '@material-ui/core';
 import headerStyles from '../styles/headerStyles';
-import pokeball from '../images/pokeball.webp';
 
 function Header(props) {
     const classes = headerStyles();
@@ -11,7 +10,7 @@ function Header(props) {
                 Pokemon Academy
             </Typography>   
             <Avatar alt="pokeball" 
-                src={pokeball} className={classes.pokeballLogo}/>
+                src={"../images/pokeball.webp"} className={classes.pokeballLogo}/>
         </div>
     );
 }
