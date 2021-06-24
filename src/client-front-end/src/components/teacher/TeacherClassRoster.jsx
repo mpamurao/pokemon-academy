@@ -27,9 +27,6 @@ class TeacherClassRoster extends Component {
         return (
             <div>
                 <Container>
-                    Class Roster
-                </Container>
-                <Container>
                     <Button onClick={() => this.changeView(viewCourse)}>
                         View Courses
                     </Button>

@@ -47,6 +47,12 @@ class TeacherLoginForm extends Component {
             });
     }
 
+    onKeyPress = event => {
+        if (event.key === 'Enter') {
+            this.clickEnter()
+        }
+    }
+
     render() {
         const {classes} = this.props;
         return (
@@ -54,10 +60,11 @@ class TeacherLoginForm extends Component {
                 <FormControl className={classes.form}>
                     <TextField required error={!this.state.email && !this.state.validRequest} id="teacher-email" label="Email" 
                         variant="outlined" value={this.state.email} className={classes.formFields}
-                        onChange={event => this.handleChange(event, "email")} />
+                        onChange={event => this.handleChange(event, "email")} onKeyUp={this.handleKeyPress} />
                     <TextField required error={!this.state.password && !this.state.validRequest} id="teacher-password" label="Password" 
                         variant="outlined" value={this.state.password} className={classes.formFields}
-                        onChange={event => this.handleChange(event, "password")} />
+                        onChange={event => this.handleChange(event, "password")} onKeyPress={this.onKeyPress} 
+                    />
                 
                     <Button onClick={this.clickEnter} className={classes.buttonSubmit}>Enter</Button>
                 </FormControl>

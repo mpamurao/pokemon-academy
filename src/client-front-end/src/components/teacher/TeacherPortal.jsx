@@ -9,7 +9,6 @@ class TeacherPortal extends Component {
 
         this.state = {
             email: "",
-            password: "",
             currentPage:"intro",
         }
     }
@@ -48,7 +47,7 @@ class TeacherPortal extends Component {
 
     componentWillUnmount () {
         console.log("unmounting")
-        this.setState({email: "", password: ""});
+        this.setState({email: ""});
     }
 }
 
