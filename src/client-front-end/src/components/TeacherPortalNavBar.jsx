@@ -36,7 +36,7 @@ function TeacherPortalNavBar(props) {
                         <Link to="/teacher/portal/account">
                             <MenuItem onClick={() => handleMenuClose("myAcc")}>My Account</MenuItem>
                         </Link>
-                        <Link to="/teacher/portal/classRoster">
+                        <Link to="/teacher/portal/class-roster">
                             <MenuItem onClick={() => handleMenuClose("classRoster")}>Class Roster</MenuItem>
                         </Link>
                         <Link to="/teacher/">
