@@ -39,7 +39,7 @@ class TeacherClassRoster extends Component {
                 {this.state.viewMode === createCourse 
                     ? <CreateCourse email={this.state.email} /> 
                         : this.state.viewMode === viewCourse
-                            ? <CoursesTeacher email={this.state.email} />
+                            ? <CoursesTeacher email={this.state.email} courseListUpdated={this.courseListUpdated}/>
                             : ""}
 
             </div>
