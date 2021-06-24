@@ -31,7 +31,8 @@ class TeacherLoginForm extends Component {
         TeacherService
             .verify(this.state.email, this.state.password)
             .then(res => {
-                if (res === "invalid request") {
+                console.log(res)
+                if (res === "Invalid email and/or password.") {
                     this.setState({validRequest: false});
                 }
                 if (res === "logging in") {
@@ -63,9 +64,9 @@ class TeacherLoginForm extends Component {
 
                 {this.state.validRequest === "" 
                         ? "" 
-                        : !this.state.validRequest 
+                        : !this.state.validRequest
                             ? <Container className={classes.notice}>
-                               Invalid email and/or password. Please try again.
+                                Invalid email and/or password. Please try again.
                             </Container>
                             : <Container className={classes.notice}>
                                 Logging in...
