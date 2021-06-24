@@ -7,7 +7,7 @@ function Header(props) {
     const classes = headerStyles();
     return (
         <div className={classes.header}>
-            <Typography variant="h3" bottom>
+            <Typography variant="h3" gutterBottom>
                 Pokemon Academy
             </Typography>   
             <Avatar alt="pokeball" 

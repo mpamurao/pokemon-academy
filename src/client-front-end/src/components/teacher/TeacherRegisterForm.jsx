@@ -34,8 +34,11 @@ class TeacherRegisterForm extends Component {
          TeacherService
             .addTeacher(this.state)
             .then(res => {
-                if (res === "bad request") {
-                    this.setState({validRequest: false});
+                if (res === "Email already exists") {
+                    this.setState({validRequest: res});
+                }
+                if (res.error === "Bad Request") {
+                    this.setState({validRequest: res.error});
                 }
                 if (res === "account created") {
                     this.setState({validRequest:true});
@@ -81,15 +84,20 @@ class TeacherRegisterForm extends Component {
                     </Container>
                 </FormControl>
 
-                {this.state.validRequest === "" 
-                    ? "" 
-                    : !this.state.validRequest 
+                {this.state.validRequest === true
+                    ? <Container className={classes.notice}>
+                        Account created. Please proceed to log in.
+                    </Container>
+                    : this.state.validRequest === "Bad Request"
                         ? <Container className={classes.notice}>
                             There was an error processing your application. Please try again.
                         </Container>
-                        : <Container className={classes.notice}>
-                            Account created. Please proceed to log in.
-                        </Container>
+                        : this.state.validRequest === "Email already exists"
+                            ? <Container className={classes.notice}>
+                                Email already exists. Please log in with existing email.
+                            </Container>
+                                : ""
+                                
                 }
                 
             </div>

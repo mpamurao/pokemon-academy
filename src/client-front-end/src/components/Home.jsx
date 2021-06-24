@@ -37,8 +37,6 @@ class Home extends Component {
                         </Button>
                     </Link>
                 </Container>
-
-
             </div>
         );
     }

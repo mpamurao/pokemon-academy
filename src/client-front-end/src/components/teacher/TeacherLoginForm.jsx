@@ -1,26 +1,7 @@
-import React, { Component, useState} from 'react';
+import React, { Component} from 'react';
 import {Container, Button, TextField, FormControl} from '@material-ui/core';
 import TeacherService from '../../service/TeacherService';
-import {useHistory} from 'react-router';
 import {withRouter} from 'react-router';
-
-// function TeacherLoginForm(props) {
-//     const history = useHistory();
-//     const [email, setEmail] = useState("");
-//     const [password, setPassword] = useState("");
-//     const [validRequest, setValidRequest] = useState("");
-//     return (
-        
-
-//         <div>
-            
-//         </div>
-//     );
-// }
-
-// export default TeacherLoginForm;
-
-
 
 class TeacherLoginForm extends Component {
     constructor() {

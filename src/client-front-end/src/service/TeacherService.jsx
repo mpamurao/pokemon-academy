@@ -10,7 +10,7 @@ class TeacherService {
         .then(res => "account created")
         .catch(err => {
            console.log("AXIOS ERROR: ", err);
-           return "bad request";
+           return err.response.data;
         });
    }
 
@@ -22,14 +22,15 @@ class TeacherService {
          password
       }
 
-      console.log(data);
+      // console.log(data);
 
       return axios
          .post(`${employeeURL}/verify`, data)
          .then(res => "logging in")
          .catch(err => {
             console.log("AXIOS ERROR: ", err);
-            return "invalid request";
+            // return http status response from backend ResponseEntity<>
+            return err.response.data;
           });
    }
 }
