@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 
 function CoursesTeacher(props) {
     const {email} = props;
-    const [courseTable, setCourseTable] = useState([]);
+    const [courses, setCourses] = useState([]);
     const [warning, setWarning] = useState("");
     const [headCells, setHeadCells] = useState([]);
 
@@ -20,12 +20,12 @@ function CoursesTeacher(props) {
                 if (res === "bad request") {
                     return;
                 }
-                console.log(res)
+                // console.log(res)
                 const response = res.data;
-                setCourseTable(response);
-                console.log(response);
+                setCourses(response);
+                // console.log(response);
                 setHeadCells(Object.keys(response[0]))
-                console.log(headCells);
+                // console.log(headCells);
             })
             
         
@@ -45,15 +45,26 @@ function CoursesTeacher(props) {
                                     if (header === "students" || header === "teachers") {
                                         return;
                                     }
-                                    return <TableCell>{header}&nbsp;</TableCell>
+                                    return <TableCell key={`${header}`}>{header}&nbsp;</TableCell>
                                 })
                             }
                         </TableRow>
                     </TableHead>
+                    <TableBody>
+                            {courses.map(row => {
+                                console.log(row.course_id);
+                                return <TableRow key={row.course_id}>
+                                    <TableCell component="th" scope="row">
+                                        {row.course_id}
+                                    </TableCell>
+                                    <TableCell align="center">{row.course_name}</TableCell>
+                                    <TableCell align="center">{row.course_description}</TableCell>
+                                    <TableCell align="center">{row.department}</TableCell>
+                                    <TableCell align="center">{row.course_size}</TableCell>
+                                </TableRow>
+                            })}
+                    </TableBody>
                 </Table>
-                {/* {!courseTable ? "" : courseTable.map(course => {
-                    return <Container></Container>
-                })} */}
             </TableContainer>
             
         </div>
