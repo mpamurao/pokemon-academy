@@ -35,7 +35,7 @@ class StudentLogin extends Component {
             <div>
                 <Container className={classes.welcome}>
                     <Typography variant="h6" gutterBottom>
-                        WELCOME {this.state.identity.toUpperCase()}
+                        WELCOME STUDENT
                     </Typography>
                 </Container>
                 <Container className={classes.loginPage}>

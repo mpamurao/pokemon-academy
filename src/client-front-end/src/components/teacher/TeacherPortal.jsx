@@ -15,7 +15,7 @@ class TeacherPortal extends Component {
     }
 
     componentDidMount() {
-        console.log("hello", this.props.location.state)
+        // console.log("hello", this.props.location.state)
         if (this.props.location.state) {
             const {state} = this.props.location;
             this.setState({email:state.email});
@@ -23,7 +23,7 @@ class TeacherPortal extends Component {
     }
 
     setCurrentPage = (currentPage) => {
-        console.log("changing page");
+        // console.log("changing page");
         this.setState({currentPage});
     }
 

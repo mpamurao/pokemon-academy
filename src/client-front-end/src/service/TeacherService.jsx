@@ -4,7 +4,7 @@ const employeeURL = `${process.env.REACT_APP_ROOT_URL || "http://localhost:8081"
 
 class TeacherService {
     addTeacher = data => {
-       console.log(data);
+      //  console.log(data);
        return axios
         .post(`${employeeURL}/register`, data)
         .then(res => "account created")
@@ -16,7 +16,7 @@ class TeacherService {
 
    // verify teacher login info
    verify = (email, password) => {
-      console.log(email, password)
+      // console.log(email, password)
       const data = {
          email,
          password
@@ -32,6 +32,19 @@ class TeacherService {
             // return http status response from backend ResponseEntity<>
             return err.response.data;
           });
+   }
+
+   // get courses taught by teacher
+   getCoursesByTeacher = (email) => {
+      const data = {email};
+      console.log(data);
+      return axios
+         .get(`${employeeURL}/${email}/courses`, data)
+         .then(res => res)
+         .catch(err => {
+            console.log(err.response)
+            return "bad request"
+         });
    }
 }
 
