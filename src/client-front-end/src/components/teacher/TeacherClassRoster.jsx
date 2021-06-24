@@ -14,7 +14,7 @@ class TeacherClassRoster extends Component {
     }
     
     componentDidMount() {
-        this.setState({email:this.props.email});
+        this.setState({email:this.props.email, viewMode:"viewCourse"});
     }
 
     changeView = (viewMode) => {

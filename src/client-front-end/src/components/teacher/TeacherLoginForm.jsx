@@ -41,8 +41,6 @@ class TeacherLoginForm extends Component {
                         pathname: "/teacher/portal",
                         state: {email:this.state.email}
                     })
-                        
-                    // window.location.reload();
                 }
             });
     }

@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 
 function CoursesTeacher(props) {
     const {email} = props;
-    const [courseTable, setCourseTable] = useState([]);
+    const [courses, setCourses] = useState([]);
     const [warning, setWarning] = useState("");
     const [headCells, setHeadCells] = useState([]);
 
@@ -22,7 +22,7 @@ function CoursesTeacher(props) {
                 }
                 console.log(res)
                 const response = res.data;
-                setCourseTable(response);
+                setCourses(response);
                 console.log(response);
                 setHeadCells(Object.keys(response[0]))
                 console.log(headCells);
@@ -50,10 +50,21 @@ function CoursesTeacher(props) {
                             }
                         </TableRow>
                     </TableHead>
+                    <TableBody>
+                            {courses.map(row => {
+                                console.log(row.course_id);
+                                return <TableRow key={row.course_id}>
+                                    <TableCell component="th" scope="row">
+                                        {row.course_id}
+                                    </TableCell>
+                                    <TableCell align="center">{row.course_name}</TableCell>
+                                    <TableCell align="center">{row.course_description}</TableCell>
+                                    <TableCell align="center">{row.department}</TableCell>
+                                    <TableCell align="center">{row.course_size}</TableCell>
+                                </TableRow>
+                            })}
+                    </TableBody>
                 </Table>
-                {/* {!courseTable ? "" : courseTable.map(course => {
-                    return <Container></Container>
-                })} */}
             </TableContainer>
             
         </div>
