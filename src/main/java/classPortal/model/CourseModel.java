@@ -6,6 +6,9 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 
 //course_id, course_name, department, course_size, teacher
 @Entity
@@ -36,6 +39,7 @@ public class CourseModel {
 	@ManyToMany(fetch = FetchType.EAGER, mappedBy="courses_student")
 	Set<StudentModel> students;
 	@ManyToMany(fetch = FetchType.EAGER, mappedBy="courses_teacher")
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	Set<TeacherModel> teachers;
 	
 	public Set<StudentModel> getStudents() {
