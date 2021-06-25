@@ -20,7 +20,7 @@ function CoursesTeacher(props) {
             return;
         }
 
-        setHeadCells(["course_id", "course_name", "description", "department", "course_size"]);
+        setHeadCells(["course_id", "course_name", "course_description", "department", "course_size"]);
         getCoursesByTeacher();
 
     }, []);
@@ -40,6 +40,9 @@ function CoursesTeacher(props) {
 
     const columns = headCells.map(header => {
         // console.log(header);
+        if (header === "course_id") {
+            return {field: header, headerName:header, width:200, editable: false}
+        }
 
         return {field: header, headerName:header, width:200, editable: true}
         
@@ -49,7 +52,7 @@ function CoursesTeacher(props) {
             id: course.course_id,
             course_id: course.course_id,
             course_name: course.course_name,
-            description: course.course_description,
+            course_description: course.course_description,
             department: course.department,
             course_size: course.course_size
 
@@ -66,6 +69,60 @@ function CoursesTeacher(props) {
         });      
     }
 
+    const handleEditCellChangeCommitted = (event) => {
+        // field: "course_name"
+        // id: 58
+        // props:
+        // value: "b"
+        console.log(event);
+
+        // let updatedCourses = courses.map(course => {
+        //     if (course.course_id !== event.id) {
+        //         return course;
+        //     }
+
+        //     if (event.field === "course_size" && isNaN(event.props.value)) {
+        //         return course;
+                
+        //     }
+
+        //     let updatedCourse = {...course};
+        //     updatedCourse[event.field] = event.props.value;
+
+        //     CourseService.updateCourse(updatedCourse)
+        //         .then(res => )
+        //     return updatedCourse;
+        // })
+        
+        // find the course that was modified
+        // filter returns a list
+        const updatedCourse = courses.filter(course => {
+            if (course.course_id === event.id) {
+                if (event.field === "course_size" && isNaN(event.props.value)) {
+                    return false;
+                    
+                }
+                return true;
+            }
+        })[0]
+
+        updatedCourse[event.field] = event.props.value;
+        
+        CourseService.updateCourse(updatedCourse)
+                .then(res => {
+                    setCourses(courses.map(course => {
+                        if (course.course_id === res.course_id) {
+                            return res;
+                        }
+
+                        return course;
+                    }))
+                });
+
+
+        // setCourses(updatedCourses);
+        // console.log("updated", updatedCourses);
+    }
     return (
         <div style={{width: "100vw", border:"1px solid black"}}>
             {warning === "No email provided." ? <Typography>{warning}</Typography> : ""}
@@ -76,9 +133,9 @@ function CoursesTeacher(props) {
                     pageSize={10}
                     checkboxSelection
                     hideFooterPagination
-                    // onRowSelected={handleRowSelection}
+                    autoPageSize
                     onSelectionModelChange={newSelection => setDeletedCourses(newSelection.selectionModel)}
-                    // selectionModel={courses}
+                    onEditCellChangeCommitted={handleEditCellChangeCommitted}
                 />
                 <Button variant="contained" color="primary" onClick={deleteCourses}>
                     Delete

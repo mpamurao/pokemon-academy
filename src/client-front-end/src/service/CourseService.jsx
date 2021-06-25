@@ -15,9 +15,21 @@ class CourseService {
    }
 
    deleteCourses = data => {
+      // set query parameters after URL
       return axios
          .delete(`${courseURL}/directory/delete?courseIds=${data.join(",")}`)
          .then(res => res)
+         .catch(err => {
+            console.log("AXIOS ERROR: ", err);
+            return "bad request";
+         })
+   }
+
+   updateCourse = data => {
+      console.log(data)
+      return axios
+         .put(`${courseURL}/directory/update`, data)
+         .then(res => res.data)
          .catch(err => {
             console.log("AXIOS ERROR: ", err);
             return "bad request";

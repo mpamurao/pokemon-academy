@@ -1,5 +1,6 @@
 package classPortal.controller;
 
+import java.util.Arrays;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -8,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 
 import classPortal.DTO.TeacherOfCourses;
 import classPortal.model.CourseModel;
@@ -24,6 +27,10 @@ public class CourseController {
 	@Autowired
 	TeacherService teacherService;
 	
+	private MultiValueMap<String,String> headers = new LinkedMultiValueMap<String,String>() {{
+//		put("Access-Control-Allow-Origin", Arrays.asList("*"));
+		put("Access-Control-Allow-Methods", Arrays.asList("GET,POST,PATCH,DELETE,PUT,OPTIONS"));
+	}};
 //	CRUD
 	
 	@GetMapping("/directory")
@@ -60,7 +67,7 @@ public class CourseController {
 		return new ResponseEntity<>(teacher.getCourses_teacher(), HttpStatus.OK);
 	}
 	
-	@PatchMapping("/directory/update")
+	@PutMapping("/directory/update")
 //	update course
 	public ResponseEntity<Object> updateCourse(@RequestBody CourseModel course) {
 		Long course_id = course.getCourse_id();
@@ -68,14 +75,15 @@ public class CourseController {
 		CourseModel currentCourse = courseService.getCourseById(course_id);
 		currentCourse.setCourse_name(course.getCourse_name());
 		currentCourse.setCourse_description(course.getCourse_description());
-		currentCourse.setDepartment(course.getCourse_description());
+		currentCourse.setDepartment(course.getDepartment());
 		currentCourse.setCourse_size(course.getCourse_size());
 		
-		return new ResponseEntity<>(courseService.updateCourse(currentCourse), HttpStatus.ACCEPTED);
+		return new ResponseEntity<>(courseService.updateCourse(currentCourse), headers, HttpStatus.ACCEPTED);
 	}
 	
 	@DeleteMapping("/directory/delete")
 //	delete course
+//	localhost:8081/course/directory/delete?courseIds=#,#,#
 	public ResponseEntity<Object> deleteCourses(@RequestParam List<Long> courseIds) {
 		courseService.deleteCourses(courseIds);
 		return new ResponseEntity<>("Deleted course", HttpStatus.ACCEPTED);
