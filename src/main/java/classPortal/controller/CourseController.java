@@ -86,6 +86,6 @@ public class CourseController {
 //	localhost:8081/course/directory/delete?courseIds=#,#,#
 	public ResponseEntity<Object> deleteCourses(@RequestParam List<Long> courseIds) {
 		courseService.deleteCourses(courseIds);
-		return new ResponseEntity<>("Deleted course", HttpStatus.ACCEPTED);
+		return new ResponseEntity<>("Deleted course", headers, HttpStatus.ACCEPTED);
 	}
 }

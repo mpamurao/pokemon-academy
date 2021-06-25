@@ -106,7 +106,6 @@ function CoursesTeacher(props) {
                     columns={columns}
                     pageSize={10}
                     checkboxSelection
-                    hideFooterPagination
                     autoPageSize
                     onSelectionModelChange={newSelection => setDeletedCourses(newSelection.selectionModel)}
                     onEditCellChangeCommitted={handleEditCellChangeCommitted}
