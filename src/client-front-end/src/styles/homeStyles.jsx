@@ -12,13 +12,14 @@ const homeStyles = {
         alignContent:"center",
         padding:"1rem",
         fontWeight:"bold",
-        textAlign:"center",
+        textAlign:"left",
     },
     pickIdentity: {
         // border:"1px solid red",
         display:"flex",
         flexFlow:"row wrap",
-        justifyContent:"center"
+        justifyContent:"center",
+        paddingLeft:"5rem",
 
     },
     identity: {
@@ -30,6 +31,15 @@ const homeStyles = {
 
     link: {
         textDecoration:"none",
+    },
+    pokemon: {
+        // border:"1px solid blue",
+        width:"13rem",
+        height:"auto",
+        display:"flex",
+        flexFlow:"row wrap",
+        zIndex:"0",
+        marginTop:"2rem",
     }
 
 }

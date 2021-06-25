@@ -39,7 +39,10 @@ function CoursesTeacher(props) {
     const columns = headCells.map(header => {
         // console.log(header);
         if (header === "course_id") {
-            return {field: header, headerName:header, width:200, editable: false}
+            return {field: header, headerName:header, width:150, editable: false}
+        }
+        if (header === "course_description") {
+            return {field: header, headerName:header, width:350, editable: true}
         }
 
         return {field: header, headerName:header, width:200, editable: true}
@@ -82,7 +85,7 @@ function CoursesTeacher(props) {
                 }
                 return true;
             }
-        })[0]
+        })[0];
 
         updatedCourse[event.field] = event.props.value;
         
@@ -98,7 +101,7 @@ function CoursesTeacher(props) {
                 });
     }
     return (
-        <div style={{width: "100vw", border:"1px solid black"}}>
+        <div style={{width: "70vw"}}>
             {warning === "No email provided." ? <Typography>{warning}</Typography> : ""}
             <Paper style={{ height: 400, width: '100%' }}>
                 <DataGrid 

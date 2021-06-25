@@ -5,6 +5,7 @@ import {Toolbar, Paper, Menu, MenuItem, MenuList, Button} from '@material-ui/cor
 function TeacherPortalNavBar(props) {
     // anchor is initial position of menu
     const [anchorEl, setAnchorEl] = useState(null);
+
     const handleOpenMenu = (event) => {
         // set the element that was clicked as the anchor
         setAnchorEl(event.currentTarget);
@@ -12,7 +13,7 @@ function TeacherPortalNavBar(props) {
 
     const handleMenuClose = (menuItem) => {
         setAnchorEl(null);
-        console.log(menuItem)
+        // console.log(menuItem)
         props.setCurrentPage(menuItem);
     }
     return (
@@ -21,30 +22,32 @@ function TeacherPortalNavBar(props) {
             <Toolbar>
                 {/* aria-controls indicates to open menu */}
                 <Button disableRipple variant="contained" color="secondary"
-                    aria-controls="menu"
-                    onClick={handleOpenMenu}>
+                    aria-controls="menu" aria-haspopup="true"
+                    onClick={handleOpenMenu} style={{position:"relative"}}
+                >
                     Profile
                 </Button>
-            </Toolbar>
+            
 
-            <Paper>
-                <Menu id="menu" anchor={anchorEl} open={Boolean(anchorEl)} 
-                onClose={handleMenuClose}
-                style={{margin:"4rem 0rem 0rem 0.6rem"}}>
+                <Paper>
+                    <Menu id="menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} 
+                    onClose={handleMenuClose} style={{margin:"5rem 0rem 0rem 5rem"}}
+                    >
                     {/* close list when an element is clicked */}
-                    <MenuList>
-                        <Link to="/teacher/portal/account">
-                            <MenuItem onClick={() => handleMenuClose("myAcc")}>My Account</MenuItem>
-                        </Link>
-                        <Link to="/teacher/portal/class-roster">
-                            <MenuItem onClick={() => handleMenuClose("classRoster")}>Class Roster</MenuItem>
-                        </Link>
-                        <Link to="/teacher/">
-                            <MenuItem>Log Out</MenuItem>
-                        </Link>
-                    </MenuList>
-                </Menu>
-            </Paper>
+                        <MenuList>
+                            <Link to="/teacher/portal/account">
+                                <MenuItem onClick={() => handleMenuClose("myAcc")}>My Account</MenuItem>
+                            </Link>
+                            <Link to="/teacher/portal/class-roster">
+                                <MenuItem onClick={() => handleMenuClose("classRoster")}>Class Roster</MenuItem>
+                            </Link>
+                            <Link to="/teacher/">
+                                <MenuItem>Log Out</MenuItem>
+                            </Link>
+                        </MenuList>
+                    </Menu>
+                </Paper>
+            </Toolbar>
         </div>
     );
 }

@@ -31,8 +31,8 @@ class TeacherPortal extends Component {
         return (
             <div>
                 <Container>
-                    <Typography>TEACHER PORTAL</Typography>
-                    <TeacherPortalNavBar setCurrentPage = {this.setCurrentPage} />
+                    <Typography variant="h5">TEACHER PORTAL</Typography>
+                    <TeacherPortalNavBar setCurrentPage={this.setCurrentPage} />
 
                     {this.state.currentPage === "intro" 
                         ? <Container>Please select an item from the menu</Container>

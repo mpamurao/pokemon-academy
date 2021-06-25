@@ -37,7 +37,7 @@ class TeacherService {
    // get courses taught by teacher
    getCoursesByTeacher = (email) => {
       const data = {email};
-      console.log(data);
+      // console.log(data);
       return axios
          .get(`${employeeURL}/${email}/courses`, data)
          .then(res => res)

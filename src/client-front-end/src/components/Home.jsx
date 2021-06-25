@@ -2,17 +2,19 @@ import React, { Component } from 'react';
 import homeStyles from '../styles/homeStyles';
 import {Container, Typography, Button, withStyles} from '@material-ui/core';
 import {Link} from 'react-router-dom';
+import PokeApi from './PokeApi';
 
 class Home extends Component {
     render() {
         const {classes} = this.props;
         return (
+      
             <div className={classes.welcomePage}>
                 <Container className={classes.welcome}>
                     <Typography variant="h6" gutterBottom>
                         WELCOME TO THE POKEMON TRAINING ACADEMY
                     </Typography>
-                    <Typography style={{fontSize:"14pt"}}>
+                    <Typography style={{fontSize:"14pt", marginTop:"1rem"}}>
                         Please choose a portal:
                     </Typography>
                 </Container>
@@ -32,6 +34,7 @@ class Home extends Component {
                             Teacher
                         </Button>
                     </Link>
+                    <PokeApi classes={classes} />
                 </Container>
             </div>
         );
