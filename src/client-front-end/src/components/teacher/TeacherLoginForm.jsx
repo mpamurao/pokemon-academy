@@ -27,7 +27,7 @@ class TeacherLoginForm extends Component {
     }
 
     clickEnter = () => {
-        console.log(this.state.email, this.state.password)
+        // console.log(this.state.email, this.state.password)
         TeacherService
             .verify(this.state.email, this.state.password)
             .then(res => {

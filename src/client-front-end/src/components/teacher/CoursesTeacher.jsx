@@ -1,11 +1,9 @@
 import React, {useState} from 'react';
 import TeacherService from '../../service/TeacherService';
-import {Container, Button, Typography,  Paper} from '@material-ui/core';
-import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import {Button, Typography,  Paper} from '@material-ui/core';
 import { DataGrid } from '@material-ui/data-grid';
 import { useEffect } from 'react';
 import CourseService from '../../service/CourseService';
-import { KeyboardReturnTwoTone } from '@material-ui/icons';
 
 function CoursesTeacher(props) {
     const {email} = props;
@@ -74,28 +72,8 @@ function CoursesTeacher(props) {
         // id: 58
         // props:
         // value: "b"
-        console.log(event);
+        // console.log(event);
 
-        // let updatedCourses = courses.map(course => {
-        //     if (course.course_id !== event.id) {
-        //         return course;
-        //     }
-
-        //     if (event.field === "course_size" && isNaN(event.props.value)) {
-        //         return course;
-                
-        //     }
-
-        //     let updatedCourse = {...course};
-        //     updatedCourse[event.field] = event.props.value;
-
-        //     CourseService.updateCourse(updatedCourse)
-        //         .then(res => )
-        //     return updatedCourse;
-        // })
-        
-        // find the course that was modified
-        // filter returns a list
         const updatedCourse = courses.filter(course => {
             if (course.course_id === event.id) {
                 if (event.field === "course_size" && isNaN(event.props.value)) {
@@ -118,10 +96,6 @@ function CoursesTeacher(props) {
                         return course;
                     }))
                 });
-
-
-        // setCourses(updatedCourses);
-        // console.log("updated", updatedCourses);
     }
     return (
         <div style={{width: "100vw", border:"1px solid black"}}>

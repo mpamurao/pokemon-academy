@@ -10,8 +10,6 @@ class TeacherLogin extends Component {
         super(props)
 
         this.state = {
-            // identity = teacher
-            identity:"",
             form:"login",
         }
     }

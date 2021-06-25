@@ -35,10 +35,18 @@ class StudentLoginForm extends Component {
                 }
                 if (res === "logging in") {
                     this.setState({validRequest:true});
-                    window.history.pushState({email: this.state.email},'', "/#/student/portal");
-                    window.location.reload();
+                    this.props.history.push({
+                        pathname: "/student/portal",
+                        state: {email:this.state.email}
+                    })
                 }
             });
+    }
+
+    onKeyPress = event => {
+        if (event.key === 'Enter') {
+            this.clickEnter()
+        }
     }
 
     render() {
@@ -49,11 +57,11 @@ class StudentLoginForm extends Component {
                     <TextField required error={!this.state.email && !this.state.validRequest}
                         id="student-email" label="Email" className={classes.formFields}
                         variant="outlined" value={this.state.email} 
-                        onChange={event => this.state.handleChange(event, "email")} />
+                        onChange={event => this.handleChange(event, "email")} />
                     <TextField required error={!this.state.password && !this.state.validRequest}
                         id="student-password" label="Password" className={classes.formFields}
                         variant="outlined" value={this.state.password} 
-                        onChange={event => this.state.handleChange(event, "password")} />
+                        onChange={event => this.handleChange(event, "password")} onKeyPress={this.onKeyPress} />
                 
                     <Button onClick={this.clickEnter} className={classes.buttonSubmit}>Enter</Button>
                 </FormControl>

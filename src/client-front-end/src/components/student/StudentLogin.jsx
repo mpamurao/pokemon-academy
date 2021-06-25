@@ -9,8 +9,6 @@ class StudentLogin extends Component {
         super(props)
 
         this.state = {
-            // identity = student
-            identity:"",
             form:"login",
         }
     }

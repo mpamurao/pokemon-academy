@@ -19,18 +19,14 @@ class Home extends Component {
                 
                 <Container className={classes.pickIdentity}>
                     <Link style={{textDecoration:"none"}} 
-                        to={{
-                            pathname:"/student", 
-                            state:{identity:"student"}}}
+                        to={"/student"}
                     >
                         <Button className={classes.identity} variant="outlined">
                             Student
                         </Button>
                     </Link>
                     <Link style={{textDecoration:"none"}} 
-                        to={{
-                            pathname:"/teacher", 
-                            state:{identity:"teacher"}}}
+                        to={"/teacher"}
                     >
                         <Button className={classes.identity} variant="outlined">
                             Teacher
