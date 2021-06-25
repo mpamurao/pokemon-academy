@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import TeacherService from '../../service/TeacherService';
-import {Container,Checkbox, Button, Typography, TableContainer, Table, TableBody, TableCell, TableHead, TableRow, TableSortLabel, Paper, FormControlLabel} from '@material-ui/core';
+import {Container, Button, Typography,  Paper} from '@material-ui/core';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import { DataGrid } from '@material-ui/data-grid';
 import { useEffect } from 'react';
@@ -12,6 +12,7 @@ function CoursesTeacher(props) {
     const [courses, setCourses] = useState([]);
     const [warning, setWarning] = useState("");
     const [headCells, setHeadCells] = useState([]);
+    const [deletedCourses, setDeletedCourses] = useState([]);
 
     useEffect(() => {
         if (!email) {
@@ -21,6 +22,7 @@ function CoursesTeacher(props) {
 
         setHeadCells(["course_id", "course_name", "description", "department", "course_size"]);
         getCoursesByTeacher();
+
     }, []);
 
     const getCoursesByTeacher = () => {
@@ -29,23 +31,15 @@ function CoursesTeacher(props) {
                 if (res === "bad request") {
                     return;
                 }
-                console.log(res)
+                // console.log(res)
                 const response = res.data;
                 setCourses(response);
-                console.log(response);
+                // console.log(response);
             });
     }
 
-    const deleteCourse = (course_id) => {
-        CourseService.deleteCourse(course_id)
-        .then(res => {
-            console.log(res);
-            getCoursesByTeacher();
-        });
-    }
-    
     const columns = headCells.map(header => {
-        console.log(header);
+        // console.log(header);
 
         return {field: header, headerName:header, width:200, editable: true}
         
@@ -62,20 +56,34 @@ function CoursesTeacher(props) {
         })
     )
 
+    const deleteCourses = () => {
+        console.log(deletedCourses)
+        CourseService.deleteCourses(deletedCourses)
+        .then(res => {
+            console.log(res);
+            getCoursesByTeacher();
+            setDeletedCourses([]);
+        });      
+    }
+
     return (
         <div style={{width: "100vw", border:"1px solid black"}}>
-            {console.log(columns)}
-            {console.log(rows)}
             {warning === "No email provided." ? <Typography>{warning}</Typography> : ""}
-            <Container style={{ height: 400, width: '100%' }}>
+            <Paper style={{ height: 400, width: '100%' }}>
                 <DataGrid 
                     rows={rows}
                     columns={columns}
                     pageSize={10}
                     checkboxSelection
-                    disableSelectionOnClick
+                    hideFooterPagination
+                    // onRowSelected={handleRowSelection}
+                    onSelectionModelChange={newSelection => setDeletedCourses(newSelection.selectionModel)}
+                    // selectionModel={courses}
                 />
-            </Container>
+                <Button variant="contained" color="primary" onClick={deleteCourses}>
+                    Delete
+                </Button>
+            </Paper>
 
 
 
@@ -105,53 +113,6 @@ function CoursesTeacher(props) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-            {/* <TableContainer component={Paper}>
-                <Table aria-label="teacher's courses">
-                    <TableHead>
-                        <TableRow>
-                            {
-                                headCells.map(header => {
-                                    if (header === "students" || header === "teachers") {
-                                        return;
-                                    }
-                                    return <TableCell>{header}&nbsp;</TableCell>
-                                })
-                            }
-                            <TableCell align="center"></TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {
-                            courses.map(row => {
-                                console.log(row.course_id);
-                                return <TableRow key={row.course_id}>
-                                    <TableCell component="th" scope="row" align="center">{row.course_id}</TableCell>
-                                    <TableCell align="center">{row.course_name}</TableCell>
-                                    <TableCell align="center">{row.course_description}</TableCell>
-                                    <TableCell align="center">{row.department}</TableCell>
-                                    <TableCell align="center">{row.course_size}</TableCell>
-                                    <TableCell align="center">
-                                        <Button onClick={() => {deleteCourse(row.course_id)}}>
-                                            <DeleteForeverIcon />
-                                        </Button>
-                                    </TableCell>
-                                </TableRow>
-                            })
-                        }
-                    </TableBody>
-                </Table>
-            </TableContainer> */}
             
         </div>
     );

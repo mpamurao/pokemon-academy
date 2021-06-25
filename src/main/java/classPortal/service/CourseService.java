@@ -1,5 +1,7 @@
 package classPortal.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,8 +36,8 @@ public class CourseService {
 	}
 	
 //	delete course
-	public void deleteCourse(Long course_id) {
-		courseRepo.deleteById(course_id);
+	public void deleteCourses(List<Long> courseIds) {
+		courseRepo.deleteAllById(courseIds);
 	}
 	
 

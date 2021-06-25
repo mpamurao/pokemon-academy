@@ -14,9 +14,9 @@ class CourseService {
       });
    }
 
-   deleteCourse = course_id => {
+   deleteCourses = data => {
       return axios
-         .delete(`${courseURL}/directory/${course_id}`, {course_id})
+         .delete(`${courseURL}/directory/delete?courseIds=${data.join(",")}`)
          .then(res => res)
          .catch(err => {
             console.log("AXIOS ERROR: ", err);

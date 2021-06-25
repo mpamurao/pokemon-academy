@@ -1,5 +1,7 @@
 package classPortal.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,10 +74,10 @@ public class CourseController {
 		return new ResponseEntity<>(courseService.updateCourse(currentCourse), HttpStatus.ACCEPTED);
 	}
 	
-	@DeleteMapping("/directory/{course_id}")
+	@DeleteMapping("/directory/delete")
 //	delete course
-	public ResponseEntity<Object> deleteCourse(@PathVariable Long course_id) {
-		courseService.deleteCourse(course_id);
+	public ResponseEntity<Object> deleteCourses(@RequestParam List<Long> courseIds) {
+		courseService.deleteCourses(courseIds);
 		return new ResponseEntity<>("Deleted course", HttpStatus.ACCEPTED);
 	}
 }
