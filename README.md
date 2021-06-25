@@ -21,4 +21,5 @@ Initialized continuous deployment from Github master branch to Heroku app.</p>
 <h4>Frontend:</h4>
 <p>Frontend provides components for the home page, teacher components, and student components. A service folder contains all the query requests used to ping the backend. A user can navigate through the app by first choosing whether they're a student or teacher, and then have the ability to log into their respective portal.</p>
 
-<h4>Wireframes</h4>(https://github.com/mpamurao/pokemon-academy/tree/master/scope%20of%20work/wireframes)
+<h4>Wireframes</h4>
+https://github.com/mpamurao/pokemon-academy/tree/master/scope%20of%20work/wireframes
