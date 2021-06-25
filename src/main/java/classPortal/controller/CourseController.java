@@ -58,10 +58,18 @@ public class CourseController {
 		return new ResponseEntity<>(teacher.getCourses_teacher(), HttpStatus.OK);
 	}
 	
-	@PatchMapping("/directory/{course_id}")
+	@PatchMapping("/directory/update")
 //	update course
-	public ResponseEntity<Object> updateCourse(@PathVariable CourseModel course) {
-		return new ResponseEntity<>(courseService.updateCourse(course), HttpStatus.ACCEPTED);
+	public ResponseEntity<Object> updateCourse(@RequestBody CourseModel course) {
+		Long course_id = course.getCourse_id();
+		
+		CourseModel currentCourse = courseService.getCourseById(course_id);
+		currentCourse.setCourse_name(course.getCourse_name());
+		currentCourse.setCourse_description(course.getCourse_description());
+		currentCourse.setDepartment(course.getCourse_description());
+		currentCourse.setCourse_size(course.getCourse_size());
+		
+		return new ResponseEntity<>(courseService.updateCourse(currentCourse), HttpStatus.ACCEPTED);
 	}
 	
 	@DeleteMapping("/directory/{course_id}")
