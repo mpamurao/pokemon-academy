@@ -4,9 +4,11 @@ import {Button, Typography,  Paper} from '@material-ui/core';
 import { DataGrid } from '@material-ui/data-grid';
 import { useEffect } from 'react';
 import CourseService from '../../service/CourseService';
+import coursesTeachersStyles from '../../styles/coursesTeachersStyles';
 
 function CoursesTeacher(props) {
     const {email} = props;
+    const classes = coursesTeachersStyles();
     const [courses, setCourses] = useState([]);
     const [warning, setWarning] = useState("");
     const [headCells, setHeadCells] = useState([]);
@@ -101,9 +103,9 @@ function CoursesTeacher(props) {
                 });
     }
     return (
-        <div style={{width: "70vw"}}>
+        <div className={classes.courseRoster}>
             {warning === "No email provided." ? <Typography>{warning}</Typography> : ""}
-            <Paper style={{ height: 400, width: '100%' }}>
+            <Paper style={{ height: 450, width: '100%' }}>
                 <DataGrid 
                     rows={rows}
                     columns={columns}
@@ -116,37 +118,7 @@ function CoursesTeacher(props) {
                 <Button variant="contained" color="primary" onClick={deleteCourses}>
                     Delete
                 </Button>
-            </Paper>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            
+            </Paper> 
         </div>
     );
 }

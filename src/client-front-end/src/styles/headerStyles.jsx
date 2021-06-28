@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/core";
 
 const headerStyles = makeStyles(() => ({
     header: {
-        width:"100vw",
+        width:"100%",
         backgroundColor:"red",
         color:"rgb(250,250,250)",
         padding: "1rem",

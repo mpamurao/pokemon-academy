@@ -2,7 +2,6 @@ import React from 'react';
 import { Typography, Avatar } from '@material-ui/core';
 import headerStyles from '../styles/headerStyles';
 import pokeball from "./images/favicon.jpg";
-import PokeApi from './PokeApi';
 
 function Header(props) {
     const classes = headerStyles();

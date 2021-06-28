@@ -31,33 +31,35 @@ class TeacherLogin extends Component {
     render() {
         const {classes} = this.props;
         return (
-            <div>
-                <Container className={classes.welcome}>
-                    <Typography variant="h6" gutterBottom>
-                        WELCOME TEACHER
-                    </Typography>
-                </Container>
-                <Container className={classes.loginPage}>
-                    <Container style={{borderBottom:"1px solid red"}}>                    
-                        <ButtonBase variant="text" onClick={this.login} 
-                            className={this.state.form === "login" 
-                                ? `${classes.buttonFocused}` : `${classes.button}`}
-                        >
-                            Login
-                        </ButtonBase>
-                        <ButtonBase variant="text" onClick={this.signUp} 
-                            className={this.state.form === "register" 
-                                ? `${classes.buttonFocused}` : `${classes.button}`}
-                        >
-                            Sign Up
-                        </ButtonBase>
+            <div className={classes.welcomePage}>
+                <Container className={classes.welcomeBox}>
+                    <Container className={classes.welcome}>
+                        <Typography variant="h6" gutterBottom>
+                            WELCOME TEACHER
+                        </Typography>
                     </Container>
-                    
-                    {this.state.form === "login" ? 
-                        <TeacherLoginForm classes={classes} />
-                        : <TeacherRegisterForm classes={classes}/>
+                    <Container className={classes.loginPage}>
+                        <Container style={{borderBottom:"1px solid red"}}>                    
+                            <ButtonBase variant="text" onClick={this.login} 
+                                className={this.state.form === "login" 
+                                    ? `${classes.buttonFocused}` : `${classes.button}`}
+                            >
+                                Login
+                            </ButtonBase>
+                            <ButtonBase variant="text" onClick={this.signUp} 
+                                className={this.state.form === "register" 
+                                    ? `${classes.buttonFocused}` : `${classes.button}`}
+                            >
+                                Sign Up
+                            </ButtonBase>
+                        </Container>
                         
-                    }
+                        {this.state.form === "login" ? 
+                            <TeacherLoginForm classes={classes} />
+                            : <TeacherRegisterForm classes={classes}/>
+                            
+                        }
+                    </Container>
                 </Container>
             </div>
         );

@@ -8,33 +8,34 @@ class Home extends Component {
     render() {
         const {classes} = this.props;
         return (
-      
             <div className={classes.welcomePage}>
-                <Container className={classes.welcome}>
-                    <Typography variant="h6" gutterBottom>
-                        WELCOME TO THE POKEMON TRAINING ACADEMY
-                    </Typography>
-                    <Typography style={{fontSize:"14pt", marginTop:"1rem"}}>
-                        Please choose a portal:
-                    </Typography>
-                </Container>
-                
-                <Container className={classes.pickIdentity}>
-                    <Link style={{textDecoration:"none"}} 
-                        to={"/student"}
-                    >
-                        <Button className={classes.identity} variant="outlined">
-                            Student
-                        </Button>
-                    </Link>
-                    <Link style={{textDecoration:"none"}} 
-                        to={"/teacher"}
-                    >
-                        <Button className={classes.identity} variant="outlined">
-                            Teacher
-                        </Button>
-                    </Link>
-                    <PokeApi classes={classes} />
+                <Container className={classes.welcomeBox}>
+                    <Container className={classes.welcome}>
+                        <Typography variant="h6" gutterBottom>
+                            WELCOME TO THE POKEMON TRAINING ACADEMY
+                        </Typography>
+                        <Typography style={{fontSize:"14pt", marginTop:"1rem"}}>
+                            Please choose a portal:
+                        </Typography>
+                    </Container>
+                    
+                    <Container className={classes.pickIdentity}>
+                        <Link style={{textDecoration:"none"}} 
+                            to={"/student"}
+                        >
+                            <Button className={classes.identity} variant="outlined">
+                                Student
+                            </Button>
+                        </Link>
+                        <Link style={{textDecoration:"none"}} 
+                            to={"/teacher"}
+                        >
+                            <Button className={classes.identity} variant="outlined">
+                                Teacher
+                            </Button>
+                        </Link>
+                        <PokeApi classes={classes} />
+                    </Container>
                 </Container>
             </div>
         );

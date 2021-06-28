@@ -1,16 +1,22 @@
 const loginPageStyles = {
+    welcomePage: {
+        border:"3px solid blue",
+        width:"100%",
+        display:"flex",
+        justifyContent:"center"
+    },
     welcome: {
         // border: "1px solid blue",
         display:"flex",
         flexFlow:"row wrap",
         alignContent:"flex-start",
         fontWeight:"bold",
-        width:"65vw",
+        width:"50vw",
         padding:"2rem 0rem 1rem 0rem",
     },
     loginPage: {
         border:"4px outset rgb(230,0,0)",
-        width:"65vw",
+        width:"50vw",
         textAlign:"center",
         display:"flex",
         flexFlow:"column",

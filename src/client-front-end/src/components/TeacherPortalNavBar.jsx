@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import {Toolbar, Paper, Menu, MenuItem, MenuList, Button} from '@material-ui/core';
+import teacherNavBarStyles from '../styles/teacherNavBarStyles';
 
 function TeacherPortalNavBar(props) {
+    const classes = teacherNavBarStyles();
     // anchor is initial position of menu
     const [anchorEl, setAnchorEl] = useState(null);
 
@@ -19,7 +21,7 @@ function TeacherPortalNavBar(props) {
     return (
         <div>
             {/* make navBar with buttons */}
-            <Toolbar>
+            <Toolbar className={classes.toolbar}>
                 {/* aria-controls indicates to open menu */}
                 <Button disableRipple variant="contained" color="secondary"
                     aria-controls="menu" aria-haspopup="true"

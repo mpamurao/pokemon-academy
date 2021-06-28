@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import TeacherPortalNavBar from '../TeacherPortalNavBar';
-import {Container, Typography} from '@material-ui/core';
+import {Container, Typography, withStyles} from '@material-ui/core';
 import TeacherClassRoster from './TeacherClassRoster';
+import teacherPortalStyles from '../../styles/teacherPortalStyles';
 
 class TeacherPortal extends Component {
     constructor(props) {
@@ -9,12 +10,11 @@ class TeacherPortal extends Component {
 
         this.state = {
             email: "",
-            currentPage:"intro",
+            currentPage:"classRoster",
         }
     }
 
     componentDidMount() {
-        // console.log("hello", this.props.location.state)
         if (this.props.location.state) {
             const {state} = this.props.location;
             this.setState({email:state.email});
@@ -27,14 +27,14 @@ class TeacherPortal extends Component {
     }
 
     render() {
-
+        const {classes} = this.props;
         return (
-            <div>
+            <div classeName={classes.portal}>
                 <Container>
-                    <Typography variant="h5">TEACHER PORTAL</Typography>
+                    <Typography variant="h5" className={classes.border}>TEACHER PORTAL</Typography>
                     <TeacherPortalNavBar setCurrentPage={this.setCurrentPage} />
 
-                    {this.state.currentPage === "intro" 
+                    {this.state.currentPage === "myAcc" 
                         ? <Container>Please select an item from the menu</Container>
                         : this.state.currentPage === "classRoster"
                             ? <TeacherClassRoster email={this.state.email} />
@@ -51,4 +51,4 @@ class TeacherPortal extends Component {
     }
 }
 
-export default TeacherPortal;
+export default withStyles(teacherPortalStyles)(TeacherPortal);

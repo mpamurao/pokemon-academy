@@ -1,9 +1,16 @@
 const homeStyles = {
     welcomePage: {
+        // border:"3px solid blue",
+        width:"100%",
+        display:"flex",
+        justifyContent:"center"
+    },
+    welcomeBox: {
         border:"4px outset rgb(230,0,0)",
-        width:"50vw",
         marginTop:"5%",
         padding:"2rem",
+        width:"50%",
+
     },
     welcome: {
         // border: "1px solid blue",
@@ -28,7 +35,6 @@ const homeStyles = {
         margin:"1rem",
         fontSize:"12pt",
     },
-
     link: {
         textDecoration:"none",
     },
