@@ -1,15 +1,18 @@
 const teacherPortalStyles = {
-    portal:{
+    portal: {
+        // border:"3px solid green",
+        width:"100vw",
         display:"flex",
-        justifySelf:"flex-start",
-        margin:"0",
-        padding:"0",
+        flexFlow:"column nowrap",
+        // justifyContent:"left",
     },
-    border:{
-        border:"5px solid green"
+    title:{
+        // border:"1px solid orange",
+        width:"100vw",
+        padding:"0",
+        margin:"0",
     },
     
-    // width:"10vw",
 }
 
 export default teacherPortalStyles

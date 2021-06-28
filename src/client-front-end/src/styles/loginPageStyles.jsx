@@ -13,6 +13,9 @@ const loginPageStyles = {
         fontWeight:"bold",
         width:"50vw",
         padding:"2rem 0rem 1rem 0rem",
+        "@media (max-width: 900px)": {
+            width:"90vw",
+        }
     },
     loginPage: {
         border:"4px outset rgb(230,0,0)",
@@ -22,7 +25,9 @@ const loginPageStyles = {
         flexFlow:"column",
         justifyContent:"center",
         marginBottom:"2rem",
-
+        "@media (max-width: 900px)": {
+            width:"90vw",
+        }
     },
     button: {
         // border:"3px outset rgb(230,0,0)",

@@ -10,7 +10,7 @@ class TeacherPortal extends Component {
 
         this.state = {
             email: "",
-            currentPage:"classRoster",
+            currentPage:"myAccount",
         }
     }
 
@@ -29,12 +29,10 @@ class TeacherPortal extends Component {
     render() {
         const {classes} = this.props;
         return (
-            <div classeName={classes.portal}>
+            <div className={classes.portal}>
+                <TeacherPortalNavBar setCurrentPage={this.setCurrentPage} />
                 <Container>
-                    <Typography variant="h5" className={classes.border}>TEACHER PORTAL</Typography>
-                    <TeacherPortalNavBar setCurrentPage={this.setCurrentPage} />
-
-                    {this.state.currentPage === "myAcc" 
+                    {this.state.currentPage === "myAccount" 
                         ? <Container>Please select an item from the menu</Container>
                         : this.state.currentPage === "classRoster"
                             ? <TeacherClassRoster email={this.state.email} />
