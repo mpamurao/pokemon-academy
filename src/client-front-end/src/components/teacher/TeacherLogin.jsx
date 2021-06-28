@@ -39,7 +39,7 @@ class TeacherLogin extends Component {
                         </Typography>
                     </Container>
                     <Container className={classes.loginPage}>
-                        <Container style={{borderBottom:"1px solid red"}}>                    
+                        <Container disableGutters style={{borderBottom:"1px solid red"}}>                    
                             <ButtonBase variant="text" onClick={this.login} 
                                 className={this.state.form === "login" 
                                     ? `${classes.buttonFocused}` : `${classes.button}`}

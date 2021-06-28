@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import TeacherPortalNavBar from '../TeacherPortalNavBar';
 import {Container, Typography, withStyles} from '@material-ui/core';
 import TeacherClassRoster from './TeacherClassRoster';
-import teacherPortalStyles from '../../styles/teacherPortalStyles';
+import teacherPortalStyles from '../../styles/teacherStyles/teacherPortalStyles';
 
 class TeacherPortal extends Component {
     constructor(props) {
@@ -35,7 +35,7 @@ class TeacherPortal extends Component {
                     {this.state.currentPage === "myAccount" 
                         ? <Container>Please select an item from the menu</Container>
                         : this.state.currentPage === "classRoster"
-                            ? <TeacherClassRoster email={this.state.email} />
+                            ? <TeacherClassRoster email={this.state.email} classes={classes}/>
                             : <Container>Logging out</Container>
                     }
                 </Container>

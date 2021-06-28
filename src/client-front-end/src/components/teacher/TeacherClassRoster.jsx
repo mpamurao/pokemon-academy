@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import {Container, Button} from '@material-ui/core';
+import {Container, Button, withStyles} from '@material-ui/core';
 import CreateCourse from './CreateCourse';
 import CoursesTeacher from './CoursesTeacher';
+import teacherClassRosterStyles from '../../styles/teacherStyles/teacherClassRosterStyles';
 
 class TeacherClassRoster extends Component {
     constructor(props) {
@@ -22,15 +23,24 @@ class TeacherClassRoster extends Component {
     }
 
     render() {
+        const {classes} = this.props;
         const viewCourse = "viewCourse";
         const createCourse = "createCourse";
         return (
             <div>
-                <Container>
-                    <Button onClick={() => this.changeView(viewCourse)}>
+                <Container disableGutters margin={1}>
+                    <Button variant="text" aria-label="view courses"
+                        className={this.state.viewMode === "viewCourse" 
+                        ? `${classes.buttonFocused}` : `${classes.button}`}
+                        onClick={() => this.changeView(viewCourse)}
+                    >
                         View Courses
                     </Button>
-                    <Button onClick={() => this.changeView(createCourse)}>
+                    <Button variant="text" aria-label="create new course"
+                        className={this.state.viewMode === "createCourse" 
+                        ? `${classes.buttonFocused}` : `${classes.button}`}
+                        onClick={() => this.changeView(createCourse)}
+                    >
                         Create New Course
                     </Button>
                 </Container>
@@ -47,4 +57,4 @@ class TeacherClassRoster extends Component {
     }
 }
 
-export default TeacherClassRoster;
+export default withStyles(teacherClassRosterStyles)(TeacherClassRoster);

@@ -51,7 +51,7 @@ function TeacherPortalNavBar(props) {
                 </Container>
 
                 <Link to="/teacher/portal/account" className={classes.title}>
-                    <Button variant="text" color="primary" aria-label="Teacher Portal" >
+                    <Button variant="text" color="primary" aria-label="Teacher Portal" onClick={() => handleMenuClose("myAcc")} >
                         <Typography variant="h5">TEACHER PORTAL</Typography>
                     </Button>
                 </Link>
