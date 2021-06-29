@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import classPortal.model.StudentModel;
-import classPortal.model.TeacherModel;
 import classPortal.service.StudentService;
 
 @RestController
