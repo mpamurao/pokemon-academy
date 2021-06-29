@@ -3,7 +3,7 @@
 Deployed on Heroku: https://pokemon-academy.herokuapp.com/
 
 <h4>Frontend Technologies:</h4> JavaScript, React, HTML, CSS, Material-UI<br>
-<h4>Backend Technologies:</h4> Java, Spring boot, PostgreSQL<br>
+<h4>Backend Technologies:</h4> Java, Spring Boot, PostgreSQL<br>
 
 <h3>User Story:</h3>
 <p>The class portal simulates the environment where students and teachers can view a class directory. There is a student portal and a teacher portal that provide different access levels. Class Portal follows a pokemon themed Pokemon Academy</p>
