@@ -4,7 +4,7 @@ const courseURL = `${process.env.REACT_APP_ROOT_URL || "http://localhost:8081"}/
 
 class CourseService {
    createCourse = data => {
-   console.log(data);
+   // console.log(data);
    return axios
       .post(`${courseURL}/create`, data)
       .then(res => "course created")
@@ -26,7 +26,7 @@ class CourseService {
    }
 
    updateCourse = data => {
-      console.log(data)
+      // console.log(data)
       return axios
          .put(`${courseURL}/directory/update`, data)
          .then(res => res.data)
@@ -34,6 +34,16 @@ class CourseService {
             console.log("AXIOS ERROR: ", err);
             return "bad request";
          })
+   }
+
+   getCourses = () => {
+      return axios
+      .get(`${courseURL}/directory`)
+      .then(res => res)
+      .catch(err => {
+         console.log("AXIOS ERROR: ", err);
+            return "bad request";
+      })
    }
 }
 

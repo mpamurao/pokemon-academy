@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Container, Button, withStyles} from '@material-ui/core';
 // import addClass from './addClass';
 import CoursesStudent from './CoursesStudent';
+import AddCourse from './AddCourse';
 import teacherClassRosterStyles from '../../styles/teacherStyles/teacherClassRosterStyles';
 
 class StudentClassRoster extends Component {
@@ -47,7 +48,7 @@ class StudentClassRoster extends Component {
 
                 {/* create a new course or show courses that student has */}
                 {this.state.viewMode === addClass 
-                    ? <addClass email={this.state.email} /> 
+                    ? <AddCourse email={this.state.email} /> 
                         : this.state.viewMode === viewCourse
                             ? <CoursesStudent email={this.state.email} courseListUpdated={this.courseListUpdated}/>
                             : ""}

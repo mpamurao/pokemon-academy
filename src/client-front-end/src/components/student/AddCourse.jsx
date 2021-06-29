@@ -1,35 +1,29 @@
 import React, {useState} from 'react';
 import StudentService from '../../service/StudentService';
-import {Button, Typography,  Paper} from '@material-ui/core';
+import {Container, Typography,  Paper} from '@material-ui/core';
 import { DataGrid } from '@material-ui/data-grid';
 import { useEffect } from 'react';
 import CourseService from '../../service/CourseService';
 
-function CoursesStudent(props) {
+function AddCourse(props) {
     const {email, classes} = props;
     const [courses, setCourses] = useState([]);
     const [warning, setWarning] = useState("");
     const [headCells, setHeadCells] = useState([]);
-    // const [deletedCourses, setDeletedCourses] = useState([]);
+    const [addedCourses, setAddedCourses] = useState([]);
 
     useEffect(() => {
-        if (!email) {
-            setWarning("No email provided.");
-            return;
-        }
-
         setHeadCells(["course_id", "course_name", "course_description", "department", "course_size"]);
-        getCoursesByStudent();
-
+        getCourses();
     }, []);
 
-    const getCoursesByStudent = () => {
-        StudentService.getCoursesByStudent(email)
+    const getCourses = () => {
+        CourseService.getCourses()
             .then(res => {
                 if (res === "bad request") {
                     return;
                 }
-                // console.log(res)
+                console.log(res)
                 const response = res.data;
                 setCourses(response);
                 // console.log(response);
@@ -55,23 +49,13 @@ function CoursesStudent(props) {
             course_name: course.course_name,
             course_description: course.course_description,
             department: course.department,
-            course_size: course.course_size
-
+            course_size: course.course_size,
         })
     )
 
-    // const deleteCourses = () => {
-    //     console.log(deletedCourses)
-    //     CourseService.deleteCourses(deletedCourses)
-    //     .then(res => {
-    //         console.log(res);
-    //         getCoursesByStudent();
-    //         setDeletedCourses([]);
-    //     });      
-    // }
-
     return (
         <div>
+            <Container> ADD A CLASS</Container>
             {warning === "No email provided." ? <Typography>{warning}</Typography> : ""}
             <Paper style={{ height: 450, width: '100%' }}>
                 <DataGrid 
@@ -80,14 +64,11 @@ function CoursesStudent(props) {
                     pageSize={10}
                     checkboxSelection
                     autoPageSize
-                    // onSelectionModelChange={newSelection => setDeletedCourses(newSelection.selectionModel)}
+                    onSelectionModelChange={newSelection => setAddedCourses(newSelection.selectionModel)}
                 />
             </Paper> 
-            {/* <Button variant="contained" color="primary" onClick={deleteCourses}>
-                Delete
-            </Button> */}
         </div>
     );
 }
 
-export default CoursesStudent;
+export default AddCourse;
