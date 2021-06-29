@@ -31,6 +31,7 @@ public class CourseController {
 //		put("Access-Control-Allow-Origin", Arrays.asList("*"));
 		put("Access-Control-Allow-Methods", Arrays.asList("GET,POST,PATCH,DELETE,PUT,OPTIONS"));
 	}};
+	
 //	CRUD
 	
 	@GetMapping("/directory")
@@ -48,7 +49,6 @@ public class CourseController {
 	@PostMapping("/create")
 //	create a new course and associate the teacher that created it
 	public ResponseEntity<Object> addCourse(@Valid @RequestBody TeacherOfCourses teacherOfCourses) {
-//		save the course to course_directory
 		CourseModel course = teacherOfCourses.getCourseModel();
 //		save course to table
 		CourseModel createdCourse = courseService.addCourse(course);
@@ -88,4 +88,6 @@ public class CourseController {
 		courseService.deleteCourses(courseIds);
 		return new ResponseEntity<>("Deleted course", headers, HttpStatus.ACCEPTED);
 	}
+	
+
 }

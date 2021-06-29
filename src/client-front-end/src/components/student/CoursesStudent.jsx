@@ -60,16 +60,6 @@ function CoursesStudent(props) {
         })
     )
 
-    // const deleteCourses = () => {
-    //     console.log(deletedCourses)
-    //     CourseService.deleteCourses(deletedCourses)
-    //     .then(res => {
-    //         console.log(res);
-    //         getCoursesByStudent();
-    //         setDeletedCourses([]);
-    //     });      
-    // }
-
     return (
         <div>
             {warning === "No email provided." ? <Typography>{warning}</Typography> : ""}
@@ -80,12 +70,8 @@ function CoursesStudent(props) {
                     pageSize={10}
                     checkboxSelection
                     autoPageSize
-                    // onSelectionModelChange={newSelection => setDeletedCourses(newSelection.selectionModel)}
                 />
             </Paper> 
-            {/* <Button variant="contained" color="primary" onClick={deleteCourses}>
-                Delete
-            </Button> */}
         </div>
     );
 }

@@ -45,7 +45,7 @@ class StudentLoginForm extends Component {
 
     onKeyPress = event => {
         if (event.key === 'Enter') {
-            this.clickEnter()
+            this.clickEnter();
         }
     }
 

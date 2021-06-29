@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core";
 
-const teacherNavBarStyles = makeStyles(() => ({
+const navBarStyles = makeStyles(() => ({
     toolbar: {
         width:"100%",
         color:"rgb(250,250,250)",
@@ -37,4 +37,4 @@ const teacherNavBarStyles = makeStyles(() => ({
 
 }));
 
-export default teacherNavBarStyles;
+export default navBarStyles;

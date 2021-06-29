@@ -45,12 +45,13 @@ public class StudentModel {
 //	single student can have many courses
 //	create new table with student_id and course_id
 	@ManyToMany(fetch = FetchType.EAGER)
+	@JsonIgnore
 	@JoinTable(
 			name = "courses_student",
 			joinColumns = @JoinColumn(name = "student_id", referencedColumnName = "student_id"),
 			inverseJoinColumns = @JoinColumn(name = "course_id", referencedColumnName = "course_id")
 	)
-	@JsonIgnore
+
 	Set<CourseModel> courses_student;
 	
 	public Set<CourseModel> getCourses_student() {

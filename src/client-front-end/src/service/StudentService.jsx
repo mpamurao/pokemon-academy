@@ -3,7 +3,7 @@ import axios from 'axios';
 const studentURL = `${process.env.REACT_APP_ROOT_URL || "http://localhost:8081"}/student`;
 
 class StudentService {
-    addStudent = data => {
+   addStudent = data => {
       // console.log(data);
       return axios
          .post(`${studentURL}/register`, data)
@@ -29,11 +29,11 @@ class StudentService {
          .catch(err => {
             console.log("AXIOS ERROR: ", err);
             return "invalid request";
-          });
+         });
    }
 
-    // get courses taught by teacher
-    getCoursesByStudent = (email) => {
+   // get courses taught by teacher
+   getCoursesByStudent = (email) => {
       const data = {email};
       // console.log(data);
       return axios
@@ -43,6 +43,14 @@ class StudentService {
             console.log(err.response)
             return "bad request"
          });
+   }
+
+   addCoursesToStudent = (email, courses) => {
+
+      return axios
+         .post(`${studentURL}/${email}/add?courseIds=${courses.join(",")}`)
+         .then(res => res)
+         .catch(err => console.log(err));
    }
 }
 

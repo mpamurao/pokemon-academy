@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import CourseService from '../../service/CourseService';
 
 function CoursesTeacher(props) {
-    const {email, classes} = props;
+    const {email} = props;
     const [courses, setCourses] = useState([]);
     const [warning, setWarning] = useState("");
     const [headCells, setHeadCells] = useState([]);

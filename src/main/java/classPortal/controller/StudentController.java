@@ -1,13 +1,21 @@
 package classPortal.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
+import classPortal.model.CourseModel;
 import classPortal.model.StudentModel;
+import classPortal.service.CourseService;
 import classPortal.service.StudentService;
 
 @RestController
@@ -16,6 +24,13 @@ import classPortal.service.StudentService;
 public class StudentController {
 	@Autowired
 	StudentService studentService;
+	@Autowired
+	CourseService courseService;
+	
+	private MultiValueMap<String,String> headers = new LinkedMultiValueMap<String,String>() {{
+//		put("Access-Control-Allow-Origin", Arrays.asList("*"));
+		put("Access-Control-Allow-Methods", Arrays.asList("GET,POST,PATCH,DELETE,PUT,OPTIONS"));
+	}};
 	
 //	CRUD
 	
@@ -88,5 +103,20 @@ public class StudentController {
 		StudentModel currentStudent = studentService.getStudentFromEmail(email);
 		
 		return new ResponseEntity<>(currentStudent.getCourses_student(), HttpStatus.OK);
+	}
+	
+//	add courses to courses_student
+	@PostMapping("/{email}/add")
+	public ResponseEntity<String> addCoursesToStudent(@PathVariable String email, @RequestParam List<Long> courseIds) {
+		StudentModel currentStudent = studentService.getStudentFromEmail(email);
+		System.out.println("STUDENT" + currentStudent);
+		
+		Iterable<CourseModel> addedCourses= courseService.getAllCoursesById(courseIds);
+		addedCourses.forEach(course -> {
+			currentStudent.getCourses_student().add(course);
+		});
+		
+		studentService.updateStudent(currentStudent);
+		return new ResponseEntity<>("Added courses to schedule", headers, HttpStatus.ACCEPTED);
 	}
 }

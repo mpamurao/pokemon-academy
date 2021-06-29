@@ -6,6 +6,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -37,9 +39,12 @@ public class CourseModel {
 //	single course can have many students and teachers
 
 	@ManyToMany(fetch = FetchType.EAGER, mappedBy="courses_student")
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	Set<StudentModel> students;
 	@ManyToMany(fetch = FetchType.EAGER, mappedBy="courses_teacher")
 	@OnDelete(action = OnDeleteAction.CASCADE)
+//	onDelete addresses foreign key constraint so it deletes courses_teacher relationship when course is deleted
+//	cascade deletion of course to everything associated with course in teacher
 	Set<TeacherModel> teachers;
 	
 	public Set<StudentModel> getStudents() {

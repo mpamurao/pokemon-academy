@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {Container, Button, withStyles} from '@material-ui/core';
-// import addClass from './addClass';
 import CoursesStudent from './CoursesStudent';
 import AddCourse from './AddCourse';
 import teacherClassRosterStyles from '../../styles/teacherStyles/teacherClassRosterStyles';
@@ -35,7 +34,7 @@ class StudentClassRoster extends Component {
                         ? `${classes.buttonFocused}` : `${classes.button}`}
                         onClick={() => this.changeView(viewCourse)}
                     >
-                        View Courses
+                        View Schedule
                     </Button>
                     <Button variant="text" aria-label="create new course"
                         className={this.state.viewMode === "addClass" 

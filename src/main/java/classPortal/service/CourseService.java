@@ -20,6 +20,11 @@ public class CourseService {
 		return courseRepo.findAll();
 	}
 	
+//	get all courses by id
+	public Iterable<CourseModel> getAllCoursesById(List<Long> courseIds) {
+		return courseRepo.findAllById(courseIds);
+	}
+	
 //	get course by id
 	public CourseModel getCourseById(Long course_id) {
 		return courseRepo.findById(course_id).get();

@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import {Toolbar, Container, Paper, Menu, MenuItem, MenuList, Button, Typography} from '@material-ui/core';
-import teacherNavBarStyles from '../../styles/teacherNavBarStyles';
+import navBarStyles from '../../styles/navBarStyles';
 
 function TeacherPortalNavBar(props) {
-    const classes = teacherNavBarStyles();
+    const classes = navBarStyles();
     // anchor is initial position of menu
     const [anchorEl, setAnchorEl] = useState(null);
 

@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
 import StudentService from '../../service/StudentService';
-import {Container, Typography,  Paper} from '@material-ui/core';
+import {Button, Typography, Paper} from '@material-ui/core';
 import { DataGrid } from '@material-ui/data-grid';
 import { useEffect } from 'react';
 import CourseService from '../../service/CourseService';
 
 function AddCourse(props) {
-    const {email, classes} = props;
+    const {email} = props;
     const [courses, setCourses] = useState([]);
     const [warning, setWarning] = useState("");
     const [headCells, setHeadCells] = useState([]);
@@ -53,6 +53,14 @@ function AddCourse(props) {
         })
     )
 
+    const addCourseToSchedule = () => {
+        StudentService.addCoursesToStudent(email, addedCourses)
+            .then(res => {
+                StudentService.getCoursesByStudent(email);
+                setAddedCourses([]);
+            });
+    }
+
     return (
         <div>
             <Typography> Select classes to add to your class schedule</Typography>
@@ -66,7 +74,8 @@ function AddCourse(props) {
                     autoPageSize
                     onSelectionModelChange={newSelection => setAddedCourses(newSelection.selectionModel)}
                 />
-            </Paper> 
+            </Paper>
+            <Button variant="contained" color="primary" onClick={addCourseToSchedule}>Add to Schedule</Button>
         </div>
     );
 }
