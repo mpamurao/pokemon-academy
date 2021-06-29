@@ -55,7 +55,7 @@ function AddCourse(props) {
 
     return (
         <div>
-            <Container> ADD A CLASS</Container>
+            <Typography> Select classes to add to your class schedule</Typography>
             {warning === "No email provided." ? <Typography>{warning}</Typography> : ""}
             <Paper style={{ height: 450, width: '100%' }}>
                 <DataGrid 

@@ -39,8 +39,8 @@ function StudentPortalNavBar(props) {
                                 <Link to="/student/portal/account" className={classes.menuItem}>
                                     <MenuItem onClick={() => handleMenuClose("myAcc")}>My Account</MenuItem>
                                 </Link>
-                                <Link to="/student/portal/class-roster" className={classes.menuItem}>
-                                    <MenuItem onClick={() => handleMenuClose("classRoster")}>Class Roster</MenuItem>
+                                <Link to="/student/portal/class-schedule" className={classes.menuItem}>
+                                    <MenuItem onClick={() => handleMenuClose("classSchedule")}>Class Schedule</MenuItem>
                                 </Link>
                                 <Link to="/student/" className={classes.menuItem}>
                                     <MenuItem>Log Out</MenuItem>

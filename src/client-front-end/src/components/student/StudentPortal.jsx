@@ -34,7 +34,7 @@ class StudentPortal extends Component {
                 <Container>
                     {this.state.currentPage === "myAccount" 
                         ? <Container>Please select an item from the menu</Container>
-                        : this.state.currentPage === "classRoster"
+                        : this.state.currentPage === "classSchedule"
                             ? <StudentClassRoster email={this.state.email} classes={classes}/>
                             : <Container>Logging out</Container>
                     }
