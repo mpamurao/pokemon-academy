@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Container, Button, TextField, FormControl} from '@material-ui/core';
 import StudentService from '../../service/StudentService';
-
+import {withRouter} from 'react-router';
 
 class StudentLoginForm extends Component {
     constructor() {
@@ -80,4 +80,4 @@ class StudentLoginForm extends Component {
     }
 }
 
-export default StudentLoginForm;
+export default withRouter(StudentLoginForm);

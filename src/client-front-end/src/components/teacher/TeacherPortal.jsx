@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import TeacherPortalNavBar from '../TeacherPortalNavBar';
+import TeacherPortalNavBar from './TeacherPortalNavBar';
 import {Container, Typography, withStyles} from '@material-ui/core';
 import TeacherClassRoster from './TeacherClassRoster';
 import teacherPortalStyles from '../../styles/teacherStyles/teacherPortalStyles';

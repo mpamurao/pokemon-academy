@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import {Toolbar, Container, Paper, Menu, MenuItem, MenuList, Button, Typography} from '@material-ui/core';
-import teacherNavBarStyles from '../styles/teacherNavBarStyles';
+import teacherNavBarStyles from '../../styles/teacherNavBarStyles';
 
-function TeacherPortalNavBar(props) {
+function StudentPortalNavBar(props) {
     const classes = teacherNavBarStyles();
     // anchor is initial position of menu
     const [anchorEl, setAnchorEl] = useState(null);
@@ -36,13 +36,13 @@ function TeacherPortalNavBar(props) {
                         >
                         {/* close list when an element is clicked */}
                             <MenuList>
-                                <Link to="/teacher/portal/account" className={classes.menuItem}>
+                                <Link to="/student/portal/account" className={classes.menuItem}>
                                     <MenuItem onClick={() => handleMenuClose("myAcc")}>My Account</MenuItem>
                                 </Link>
-                                <Link to="/teacher/portal/class-roster" className={classes.menuItem}>
+                                <Link to="/student/portal/class-roster" className={classes.menuItem}>
                                     <MenuItem onClick={() => handleMenuClose("classRoster")}>Class Roster</MenuItem>
                                 </Link>
-                                <Link to="/teacher/" className={classes.menuItem}>
+                                <Link to="/student/" className={classes.menuItem}>
                                     <MenuItem>Log Out</MenuItem>
                                 </Link>
                             </MenuList>
@@ -50,9 +50,9 @@ function TeacherPortalNavBar(props) {
                     </Paper>
                 </Container>
 
-                <Link to="/teacher/portal/account" className={classes.title}>
+                <Link to="/student/portal/account" className={classes.title}>
                     <Button variant="text" color="primary" aria-label="Teacher Portal" onClick={() => handleMenuClose("myAcc")} >
-                        <Typography variant="h5">TEACHER PORTAL</Typography>
+                        <Typography variant="h5">STUDENT PORTAL</Typography>
                     </Button>
                 </Link>
             </Toolbar>
@@ -60,4 +60,4 @@ function TeacherPortalNavBar(props) {
     );
 }
 
-export default TeacherPortalNavBar;
+export default StudentPortalNavBar;

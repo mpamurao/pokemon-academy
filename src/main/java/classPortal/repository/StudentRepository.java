@@ -12,4 +12,6 @@ public interface StudentRepository extends CrudRepository<StudentModel, Long> {
 	
 	@Query("SELECT password FROM StudentModel WHERE email = :emailInput")
 	String checkCorrespondingPass(@Param("emailInput") String emailInput);
+	
+	StudentModel findByEmail(String emailInput);
 }

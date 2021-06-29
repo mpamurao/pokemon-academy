@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import classPortal.model.StudentModel;
+import classPortal.model.TeacherModel;
 import classPortal.repository.StudentRepository;
 
 @Service
@@ -47,4 +48,10 @@ public class StudentService {
 	public String checkCorrespondingPass(String emailInput) {
 		return studentRepo.checkCorrespondingPass(emailInput);
 	}
+	
+	// get student from email
+	public StudentModel getStudentFromEmail(String emailInput) {
+		return studentRepo.findByEmail(emailInput);
+	}
+
 }

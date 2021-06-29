@@ -4,7 +4,7 @@ const studentURL = `${process.env.REACT_APP_ROOT_URL || "http://localhost:8081"}
 
 class StudentService {
     addStudent = data => {
-      console.log(data);
+      // console.log(data);
       return axios
          .post(`${studentURL}/register`, data)
          .then(res => "account created")
@@ -21,7 +21,7 @@ class StudentService {
          password
       }
 
-      console.log(data);
+      // console.log(data);
 
       return axios
          .post(`${studentURL}/verify`, data)
@@ -30,6 +30,19 @@ class StudentService {
             console.log("AXIOS ERROR: ", err);
             return "invalid request";
           });
+   }
+
+    // get courses taught by teacher
+    getCoursesByStudent = (email) => {
+      const data = {email};
+      // console.log(data);
+      return axios
+         .get(`${studentURL}/${email}/courses`, data)
+         .then(res => res)
+         .catch(err => {
+            console.log(err.response)
+            return "bad request"
+         });
    }
 }
 

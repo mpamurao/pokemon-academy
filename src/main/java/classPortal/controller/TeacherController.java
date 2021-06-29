@@ -81,7 +81,6 @@ public class TeacherController {
 		return new ResponseEntity<>("Invalid email and/or password.", HttpStatus.UNAUTHORIZED);
 	}
 	
-	
 	@GetMapping("/{email}/courses")
 //	get course that are associated with the teacher
 	public ResponseEntity<Object> getCoursesByTeacher(@PathVariable String email) {

@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import classPortal.model.StudentModel;
+import classPortal.model.TeacherModel;
 import classPortal.service.StudentService;
 
 @RestController
@@ -79,5 +80,14 @@ public class StudentController {
 			}
 		}
 		return new ResponseEntity<>("Invalid email and/or password.", HttpStatus.UNAUTHORIZED);
+	}
+	
+	@GetMapping("/{email}/courses")
+//	get course that are associated with the teacher
+	public ResponseEntity<Object> getCoursesByStudent(@PathVariable String email) {
+//		get the teacher model associated to the email in request body
+		StudentModel currentStudent = studentService.getStudentFromEmail(email);
+		
+		return new ResponseEntity<>(currentStudent.getCourses_student(), HttpStatus.OK);
 	}
 }
