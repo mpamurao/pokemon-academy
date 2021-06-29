@@ -34,9 +34,10 @@ class PokeApi extends Component {
         const {classes} = this.props;
         return (
             <div>
-                <CardMedia alt="random pokemon" component="img"
-                image={this.state.sprite} className={classes.pokemon}/>
-
+                {!this.state.sprite ? "" 
+                : <CardMedia alt="random pokemon" component="img"
+                    image={this.state.sprite} className={classes.pokemon}/>
+                }
             </div>
         );
     }
