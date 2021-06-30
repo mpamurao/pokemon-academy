@@ -70,7 +70,7 @@ function AddCourse(props) {
                 }
 
                 setClassSizeMaxed(false);
-                setValidateAddedCourse(true);
+                setValidateAddedCourse("Added Course");
                 getCourses();
                 setAddedCourses([]);
             });
@@ -93,7 +93,6 @@ function AddCourse(props) {
                     </Typography> 
                 : ""
             }
-
 
             <Paper style={{height: 450}}>
             <DataGrid className={classes.root}            
