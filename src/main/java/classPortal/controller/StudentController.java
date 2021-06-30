@@ -107,20 +107,19 @@ public class StudentController {
 	
 //	add courses to courses_student
 	@PostMapping("/{email}/add")
-	public ResponseEntity<String> addCoursesToStudent(@PathVariable String email, @RequestParam List<Long> courseIds) {
+	public ResponseEntity<Object> addCoursesToStudent(@PathVariable String email, @RequestParam List<Long> courseIds) {
 		StudentModel currentStudent = studentService.getStudentFromEmail(email);
 		
 		Iterable<CourseModel> addedCourses= courseService.getAllCoursesById(courseIds);
-		addedCourses.forEach(course -> {
+		
 //			if course size is the same value as course enrolled, don't enroll student into the class
-			if (course.getCourse_size() <= course.getCourse_enrolled()) {
-				int enrolledStudentsInCourse = course.getCourse_enrolled();
-				course.setCourse_enrolled(enrolledStudentsInCourse + 1);
-				courseService.updateCourse(course);
-				
-				currentStudent.getCourses_student().add(course);
+		for (CourseModel course: addedCourses) {
+			if (course.getCourse_size() <=  course.getStudents().size()) {
+				return new ResponseEntity<>("Class is full", headers, HttpStatus.CONFLICT);
 			}
-		});
+			
+			currentStudent.getCourses_student().add(course);
+		};
 		
 		studentService.updateStudent(currentStudent);
 		return new ResponseEntity<>("Added courses to schedule", headers, HttpStatus.ACCEPTED);

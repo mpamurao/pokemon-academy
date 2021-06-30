@@ -40,8 +40,8 @@ class StudentService {
          .get(`${studentURL}/${email}/courses`, data)
          .then(res => res)
          .catch(err => {
-            console.log(err.response)
-            return "bad request"
+            console.log(err.response);
+            return "bad request";
          });
    }
 
@@ -50,7 +50,9 @@ class StudentService {
       return axios
          .post(`${studentURL}/${email}/add?courseIds=${courses.join(",")}`)
          .then(res => res)
-         .catch(err => console.log(err));
+         .catch(err => {
+            return err.response.data;
+         });
    }
 }
 

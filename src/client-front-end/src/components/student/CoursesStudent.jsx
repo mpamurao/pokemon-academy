@@ -29,7 +29,7 @@ function CoursesStudent(props) {
                 if (res === "bad request") {
                     return;
                 }
-                // console.log(res)
+                console.log(res)
                 const response = res.data;
                 setCourses(response);
                 // console.log(response);

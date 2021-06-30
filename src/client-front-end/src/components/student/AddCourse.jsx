@@ -10,6 +10,7 @@ function AddCourse(props) {
     const [courses, setCourses] = useState([]);
     const [headCells, setHeadCells] = useState([]);
     const [addedCourses, setAddedCourses] = useState([]);
+    const [classSizeMaxed, setClassSizeMaxed] = useState(false);
 
     useEffect(() => {
         setHeadCells(["course_id", "course_name", "course_description", "department", "course_size", "course_enrolled"]);
@@ -22,7 +23,7 @@ function AddCourse(props) {
                 if (res === "bad request") {
                     return;
                 }
-                console.log(res)
+                // console.log("res ", res)
                 const response = res.data;
                 setCourses(response);
             });
@@ -54,6 +55,13 @@ function AddCourse(props) {
     const addCourseToSchedule = () => {
         StudentService.addCoursesToStudent(email, addedCourses)
             .then(res => {
+                // console.log(res)
+                if (res.includes("Class is full")) {
+                    setClassSizeMaxed(res);
+                    return;
+                }
+
+                setClassSizeMaxed(false);
                 StudentService.getCoursesByStudent(email);
                 setAddedCourses([]);
             });
@@ -62,6 +70,7 @@ function AddCourse(props) {
     return (
         <div>
             <Typography> Select classes to add to your class schedule</Typography>
+            {classSizeMaxed ? <Typography color="error">{classSizeMaxed}. Please try adding a different course.</Typography> : ""}
             <Paper style={{ height: 450, width: '100%' }}>
                 <DataGrid 
                     rows={rows}

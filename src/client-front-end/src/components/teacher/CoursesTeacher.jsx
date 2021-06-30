@@ -38,7 +38,7 @@ function CoursesTeacher(props) {
 
     const columns = headCells.map(header => {
         // console.log(header);
-        if (header === "course_id") {
+        if (header === "course_id" || header === "course_enrolled") {
             return {field: header, headerName:header, width:150, editable: false}
         }
         if (header === "course_description") {

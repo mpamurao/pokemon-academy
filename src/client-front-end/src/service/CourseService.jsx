@@ -22,7 +22,7 @@ class CourseService {
          .catch(err => {
             console.log("AXIOS ERROR: ", err);
             return "bad request";
-         })
+         });
    }
 
    updateCourse = data => {
@@ -33,17 +33,17 @@ class CourseService {
          .catch(err => {
             console.log("AXIOS ERROR: ", err);
             return "bad request";
-         })
+         });
    }
 
    getCourses = () => {
       return axios
-      .get(`${courseURL}/directory`)
-      .then(res => res)
-      .catch(err => {
-         console.log("AXIOS ERROR: ", err);
+         .get(`${courseURL}/directory`)
+         .then(res => res)
+         .catch(err => {
+            console.log("AXIOS ERROR: ", err);
             return "bad request";
-      })
+         });
    }
 }
 
