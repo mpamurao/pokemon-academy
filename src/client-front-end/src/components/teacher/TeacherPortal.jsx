@@ -10,14 +10,14 @@ class TeacherPortal extends Component {
 
         this.state = {
             email: "",
-            currentPage:"myAccount",
+            currentPage:"",
         }
     }
 
     componentDidMount() {
         if (this.props.location.state) {
             const {state} = this.props.location;
-            this.setState({email:state.email});
+            this.setState({email:state.email, currentPage:"classRoster",});
         }
     }
 

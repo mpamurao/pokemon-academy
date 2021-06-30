@@ -12,8 +12,12 @@ function AddCourse(props) {
     const [headCells, setHeadCells] = useState([]);
     const [addedCourses, setAddedCourses] = useState([]);
     const [classSizeMaxed, setClassSizeMaxed] = useState(false);
+    const [validateAddedCourse, setValidateAddedCourse] = useState(false);
+
 
     useEffect(() => {
+        setValidateAddedCourse(false);
+        setClassSizeMaxed(false);
         setHeadCells(["course_id", "course_name", "course_description", "department", "course_size", "students_enrolled"]);
         getCourses();
     }, []);
@@ -66,6 +70,7 @@ function AddCourse(props) {
                 }
 
                 setClassSizeMaxed(false);
+                setValidateAddedCourse(true);
                 getCourses();
                 setAddedCourses([]);
             });
@@ -81,6 +86,14 @@ function AddCourse(props) {
                     </Typography> 
                 : ""
             }
+
+            {validateAddedCourse
+                ? <Typography color="primary" className={classes.instructions}>
+                    Successfully added a class to your schedule.
+                    </Typography> 
+                : ""
+            }
+
 
             <Paper style={{height: 450}}>
             <DataGrid className={classes.root}            
