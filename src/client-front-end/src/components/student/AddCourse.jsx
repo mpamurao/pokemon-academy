@@ -8,12 +8,11 @@ import CourseService from '../../service/CourseService';
 function AddCourse(props) {
     const {email} = props;
     const [courses, setCourses] = useState([]);
-    const [warning, setWarning] = useState("");
     const [headCells, setHeadCells] = useState([]);
     const [addedCourses, setAddedCourses] = useState([]);
 
     useEffect(() => {
-        setHeadCells(["course_id", "course_name", "course_description", "department", "course_size"]);
+        setHeadCells(["course_id", "course_name", "course_description", "department", "course_size", "course_enrolled"]);
         getCourses();
     }, []);
 
@@ -26,12 +25,10 @@ function AddCourse(props) {
                 console.log(res)
                 const response = res.data;
                 setCourses(response);
-                // console.log(response);
             });
     }
 
     const columns = headCells.map(header => {
-        // console.log(header);
         if (header === "course_id") {
             return {field: header, headerName:header, width:150, editable: false}
         }
@@ -50,6 +47,7 @@ function AddCourse(props) {
             course_description: course.course_description,
             department: course.department,
             course_size: course.course_size,
+            course_enrolled:course.course_enrolled,
         })
     )
 
@@ -64,7 +62,6 @@ function AddCourse(props) {
     return (
         <div>
             <Typography> Select classes to add to your class schedule</Typography>
-            {warning === "No email provided." ? <Typography>{warning}</Typography> : ""}
             <Paper style={{ height: 450, width: '100%' }}>
                 <DataGrid 
                     rows={rows}

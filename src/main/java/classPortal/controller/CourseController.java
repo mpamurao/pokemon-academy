@@ -28,26 +28,25 @@ public class CourseController {
 	TeacherService teacherService;
 	
 	private MultiValueMap<String,String> headers = new LinkedMultiValueMap<String,String>() {{
-//		put("Access-Control-Allow-Origin", Arrays.asList("*"));
 		put("Access-Control-Allow-Methods", Arrays.asList("GET,POST,PATCH,DELETE,PUT,OPTIONS"));
 	}};
 	
 //	CRUD
 	
-	@GetMapping("/directory")
 //	get all courses
+	@GetMapping("/directory")
 	public Iterable<CourseModel> getCourses() {
 		return courseService.getCourses();
 	}
 	
-	@GetMapping("/directory/{course_id}")
 //	get course by id
+	@GetMapping("/directory/{course_id}")
 	public ResponseEntity<Object> getCourseById(@PathVariable Long course_id) {
 		return new ResponseEntity<>(courseService.getCourseById(course_id), HttpStatus.OK);
 	}
 	
-	@PostMapping("/create")
 //	create a new course and associate the teacher that created it
+	@PostMapping("/create")
 	public ResponseEntity<Object> addCourse(@Valid @RequestBody TeacherOfCourses teacherOfCourses) {
 		CourseModel course = teacherOfCourses.getCourseModel();
 //		save course to table
@@ -67,8 +66,8 @@ public class CourseController {
 		return new ResponseEntity<>(teacher.getCourses_teacher(), HttpStatus.OK);
 	}
 	
-	@PutMapping("/directory/update")
 //	update course
+	@PutMapping("/directory/update")
 	public ResponseEntity<Object> updateCourse(@RequestBody CourseModel course) {
 		Long course_id = course.getCourse_id();
 		
@@ -81,13 +80,12 @@ public class CourseController {
 		return new ResponseEntity<>(courseService.updateCourse(currentCourse), headers, HttpStatus.ACCEPTED);
 	}
 	
-	@DeleteMapping("/directory/delete")
 //	delete course
+	@DeleteMapping("/directory/delete")
 //	localhost:8081/course/directory/delete?courseIds=#,#,#
 	public ResponseEntity<Object> deleteCourses(@RequestParam List<Long> courseIds) {
 		courseService.deleteCourses(courseIds);
 		return new ResponseEntity<>("Deleted course", headers, HttpStatus.ACCEPTED);
 	}
 	
-
 }

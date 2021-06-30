@@ -18,7 +18,7 @@ function CoursesTeacher(props) {
             return;
         }
 
-        setHeadCells(["course_id", "course_name", "course_description", "department", "course_size"]);
+        setHeadCells(["course_id", "course_name", "course_description", "department", "course_size", "course_enrolled"]);
         getCoursesByTeacher();
 
     }, []);
@@ -55,8 +55,8 @@ function CoursesTeacher(props) {
             course_name: course.course_name,
             course_description: course.course_description,
             department: course.department,
-            course_size: course.course_size
-
+            course_size: course.course_size,
+            course_enrolled:course.course_enrolled,
         })
     )
 

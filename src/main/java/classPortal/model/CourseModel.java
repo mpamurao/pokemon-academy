@@ -35,6 +35,9 @@ public class CourseModel {
 	@NotNull
 	@Column
 	private int course_size;
+	@NotNull
+	@Column
+	private int course_enrolled;
 	
 //	single course can have many students and teachers
 
@@ -88,6 +91,12 @@ public class CourseModel {
 	}
 	public void setCourse_size(int course_size) {
 		this.course_size = course_size;
+	}
+	public int getCourse_enrolled() {
+		return course_enrolled;
+	}
+	public void setCourse_enrolled(int course_enrolled) {
+		this.course_enrolled = course_enrolled;
 	}
 	
 }

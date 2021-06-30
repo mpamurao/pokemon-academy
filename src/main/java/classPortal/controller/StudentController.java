@@ -34,21 +34,21 @@ public class StudentController {
 	
 //	CRUD
 	
-	@GetMapping("/directory")
 //	get all students
+	@GetMapping("/directory")
 	public Iterable<StudentModel> getStudents() {
 		return studentService.getStudents();
 	}
 	
-	@GetMapping("/directory/{student_id}")
 //	get student by id
+	@GetMapping("/directory/{student_id}")
 	public ResponseEntity<Object> getStudentById(@PathVariable Long student_id) {
 //		return a response that includes the request body and httpstatus
 		return new ResponseEntity<>(studentService.getStudentById(student_id), HttpStatus.OK);
 	}
 	
-	@PostMapping("/register")
 //	post/create new student
+	@PostMapping("/register")
 	public ResponseEntity<Object> addStudent(@Valid @RequestBody StudentModel student) {
 		//	return bad response if conditions are met (value is null in student body request)
 		if (student.getFirst_name() == null || student.getLast_name() == null || student.getEmail() == null 
@@ -62,14 +62,14 @@ public class StudentController {
 		return new ResponseEntity<>(studentService.addStudent(student), HttpStatus.ACCEPTED);
 	}
 	
-	@PatchMapping("/directory/{student_id}")
 //	update student
+	@PatchMapping("/directory/{student_id}")
 	public ResponseEntity<Object> updateStudent(@Valid @RequestBody StudentModel student) {
 		return new ResponseEntity<>(studentService.updateStudent(student), HttpStatus.ACCEPTED);
 	}
 	
-	@DeleteMapping("/directory/{student_id}")
 //	delete student profile
+	@DeleteMapping("/directory/{student_id}")
 	public ResponseEntity<Object> deleteStudent(@PathVariable Long student_id) {
 		studentService.deleteStudent(student_id);
 		return new ResponseEntity<>("Deleted student profile", HttpStatus.ACCEPTED);
@@ -96,8 +96,8 @@ public class StudentController {
 		return new ResponseEntity<>("Invalid email and/or password.", HttpStatus.UNAUTHORIZED);
 	}
 	
-	@GetMapping("/{email}/courses")
 //	get course that are associated with the teacher
+	@GetMapping("/{email}/courses")
 	public ResponseEntity<Object> getCoursesByStudent(@PathVariable String email) {
 //		get the teacher model associated to the email in request body
 		StudentModel currentStudent = studentService.getStudentFromEmail(email);
@@ -109,11 +109,17 @@ public class StudentController {
 	@PostMapping("/{email}/add")
 	public ResponseEntity<String> addCoursesToStudent(@PathVariable String email, @RequestParam List<Long> courseIds) {
 		StudentModel currentStudent = studentService.getStudentFromEmail(email);
-		System.out.println("STUDENT" + currentStudent);
 		
 		Iterable<CourseModel> addedCourses= courseService.getAllCoursesById(courseIds);
 		addedCourses.forEach(course -> {
-			currentStudent.getCourses_student().add(course);
+//			if course size is the same value as course enrolled, don't enroll student into the class
+			if (course.getCourse_size() <= course.getCourse_enrolled()) {
+				int enrolledStudentsInCourse = course.getCourse_enrolled();
+				course.setCourse_enrolled(enrolledStudentsInCourse + 1);
+				courseService.updateCourse(course);
+				
+				currentStudent.getCourses_student().add(course);
+			}
 		});
 		
 		studentService.updateStudent(currentStudent);
