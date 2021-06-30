@@ -4,9 +4,10 @@ import {Button, Typography, Paper} from '@material-ui/core';
 import { DataGrid } from '@material-ui/data-grid';
 import { useEffect } from 'react';
 import CourseService from '../../service/CourseService';
+import { CropLandscapeSharp } from '@material-ui/icons';
 
 function AddCourse(props) {
-    const {email} = props;
+    const {email, classes} = props;
     const [courses, setCourses] = useState([]);
     const [headCells, setHeadCells] = useState([]);
     const [addedCourses, setAddedCourses] = useState([]);
@@ -31,13 +32,16 @@ function AddCourse(props) {
 
     const columns = headCells.map(header => {
         if (header === "course_id") {
-            return {field: header, headerName:header, width:150, editable: false}
+            return {field: header, headerName:header, width:150, editable: false,
+                headerAlign: "center", cellClassName:"courseInfo"}
         }
         if (header === "course_description") {
-            return {field: header, headerName:header, width:350, editable: false}
+            return {field: header, headerName:header, width:350, editable: false,
+                headerAlign: "center", cellClassName:"courseInfo"}
         }
 
-        return {field: header, headerName:header, width:200, editable: false}
+        return {field: header, headerName:header, width:200, editable: false,
+            headerAlign: "center", cellClassName:"courseInfo"}
         
     })
 
@@ -68,11 +72,11 @@ function AddCourse(props) {
     }
 
     return (
-        <div>
+        <div className={classes.tableDisplay}>
             <Typography> Select classes to add to your class schedule</Typography>
             {classSizeMaxed ? <Typography color="error">{classSizeMaxed}. Please try adding a different course.</Typography> : ""}
-            <Paper style={{ height: 450, width: '100%' }}>
-                <DataGrid 
+            <Paper style={{height: 450}}>
+            <DataGrid className={classes.root}            
                     rows={rows}
                     columns={columns}
                     pageSize={10}
@@ -81,7 +85,7 @@ function AddCourse(props) {
                     onSelectionModelChange={newSelection => setAddedCourses(newSelection.selectionModel)}
                 />
             </Paper>
-            <Button variant="contained" color="primary" onClick={addCourseToSchedule}>Add to Schedule</Button>
+            <Button variant="contained" color="primary" onClick={addCourseToSchedule} className={classes.buttonTable}>Add to Schedule</Button>
         </div>
     );
 }

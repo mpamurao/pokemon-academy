@@ -10,14 +10,14 @@ class StudentPortal extends Component {
 
         this.state = {
             email: "",
-            currentPage:"myAccount",
+            currentPage:"",
         }
     }
 
     componentDidMount() {
         if (this.props.location.state) {
             const {state} = this.props.location;
-            this.setState({email:state.email});
+            this.setState({email:state.email, currentPage:"classSchedule"});
         }
     }
 
@@ -31,7 +31,7 @@ class StudentPortal extends Component {
         return (
             <div className={classes.portal}>
                 <StudentPortalNavBar setCurrentPage={this.setCurrentPage} />
-                
+
                 <div className={classes.tableContainer}>
                     {this.state.currentPage === "myAccount" 
                         ? <Container>Please select an item from the menu</Container>

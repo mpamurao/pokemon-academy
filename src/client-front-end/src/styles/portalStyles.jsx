@@ -1,6 +1,6 @@
 const portalStyles = {
     portal: {
-        border:"3px solid green",
+        // border:"3px solid green",
         width:"100vw",
         display:"grid",
         grid:"repeat(2, 1fr) / 1"
@@ -11,7 +11,7 @@ const portalStyles = {
         fontWeight:"bold",
     },
     tableContainer: {
-        border:"2px solid orange",
+        // border:"2px solid orange",
         width:"100%",
         display:"flex",
         flexFlow:"row wrap",
