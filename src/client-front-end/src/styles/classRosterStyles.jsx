@@ -50,7 +50,7 @@ const classRosterStyles = {
         // border:"3px outset rgb(230,0,0)",
         width:"12rem",
         // padding:"0.5rem",
-        marginTop:"0.5rem",
+        marginTop:"0.8rem",
         fontSize:"12pt",
         // fontWeight:"bold",
     },

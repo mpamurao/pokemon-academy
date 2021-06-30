@@ -112,8 +112,8 @@ public class StudentController {
 		
 		Iterable<CourseModel> addedCourses= courseService.getAllCoursesById(courseIds);
 		
-//			if course size is the same value as course enrolled, don't enroll student into the class
 		for (CourseModel course: addedCourses) {
+//			if course size is the same value as course enrolled, don't enroll student into the class
 			if (course.getCourse_size() <=  course.getStudents().size()) {
 				return new ResponseEntity<>("Class is full: " + course.getCourse_name(), headers, HttpStatus.CONFLICT);
 			}
@@ -123,5 +123,17 @@ public class StudentController {
 		
 		studentService.updateStudent(currentStudent);
 		return new ResponseEntity<>("Added courses to schedule", headers, HttpStatus.ACCEPTED);
+	}
+	
+//	remove courses from courses_student
+	@DeleteMapping("/{email}/remove")
+	public ResponseEntity<Object> removeCoursesFromStudent(@PathVariable String email, @RequestParam List<Long> courseIds) {
+		StudentModel currentStudent = studentService.getStudentFromEmail(email);
+//		List<CourseModels> coursesToBeRemoved = new List<>();
+		currentStudent.getCourses_student().removeIf(course -> courseIds.contains(course.getCourse_id()));
+		
+		studentService.updateStudent(currentStudent);
+		return new ResponseEntity<>("Removed courses from schedule", headers, HttpStatus.ACCEPTED);
+
 	}
 }

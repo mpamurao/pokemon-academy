@@ -54,6 +54,15 @@ class StudentService {
             return err.response.data;
          });
    }
+
+   removeCoursesFromStudent = (email, courses) => {
+      return axios
+      .post(`${studentURL}/${email}/remove?courseIds=${courses.join(",")}`)
+      .then(res => res.data)
+      .catch(err => {
+         return err.response.data;
+      });
+   }
 }
 
 export default new StudentService();

@@ -9,14 +9,15 @@ function CoursesStudent(props) {
     const [courses, setCourses] = useState([]);
     const [warning, setWarning] = useState("");
     const [headCells, setHeadCells] = useState([]);
-    // const [deletedCourses, setDeletedCourses] = useState([]);
+    const [removedCourses, setRemovedCourses] = useState([]);
+    const [validateRemovedCourse, setValidateRemovedCourse] = useState(false);
 
     useEffect(() => {
         if (!email) {
             setWarning("No email provided.");
             return;
         }
-
+        setValidateRemovedCourse(false);
         setHeadCells(["course_id", "course_name", "course_description", "department", "course_size", "students_enrolled"]);
         getCoursesByStudent();
 
@@ -65,9 +66,26 @@ function CoursesStudent(props) {
         })
     )
 
+    const removeCoursesFromStudent = () => {
+        StudentService.removeCoursesFromStudent(email, removedCourses)
+            .then(res => {
+                console.log(res);
+                setValidateRemovedCourse(true);
+                setRemovedCourses([]);
+            });
+    }
+
     return (
         <div className={classes.tableDisplay}>
-            {warning === "No email provided." ? <Typography>{warning}</Typography> : ""}
+            {warning === "No email provided." ? <Typography className={classes.instructions}>{warning}</Typography> : ""}
+
+            {validateRemovedCourse
+                ? <Typography color="error" className={classes.instructions}>
+                    Class removed from schedule.
+                    </Typography> 
+                : ""
+            }
+
             <Paper style={{height:450}}>
                 <DataGrid className={classes.root}
                     rows={rows}
@@ -75,8 +93,15 @@ function CoursesStudent(props) {
                     pageSize={10}
                     checkboxSelection
                     autoPageSize
+                    onSelectionModelChange={newSelection => setRemovedCourses(newSelection.selectionModel)}
                 />
             </Paper> 
+
+            <Button variant="contained" color="primary" 
+                onClick={removeCoursesFromStudent} 
+                className={classes.buttonTable}>
+                    Remove Class
+            </Button>
         </div>
     );
 }
