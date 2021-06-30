@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import StudentPortalNavBar from './StudentPortalNavBar';
 import {Container, Typography, withStyles} from '@material-ui/core';
 import StudentClassRoster from './StudentClassRoster';
-import teacherPortalStyles from '../../styles/teacherStyles/teacherPortalStyles';
+import portalStyles from '../../styles/portalStyles';
 
 class StudentPortal extends Component {
     constructor(props) {
@@ -31,14 +31,15 @@ class StudentPortal extends Component {
         return (
             <div className={classes.portal}>
                 <StudentPortalNavBar setCurrentPage={this.setCurrentPage} />
-                <Container>
+                
+                <div className={classes.tableContainer}>
                     {this.state.currentPage === "myAccount" 
                         ? <Container>Please select an item from the menu</Container>
                         : this.state.currentPage === "classSchedule"
                             ? <StudentClassRoster email={this.state.email} classes={classes}/>
                             : <Container>Logging out</Container>
                     }
-                </Container>
+                </div>
             </div>
         );
     }
@@ -49,4 +50,4 @@ class StudentPortal extends Component {
     }
 }
 
-export default withStyles(teacherPortalStyles)(StudentPortal);
+export default withStyles(portalStyles)(StudentPortal);

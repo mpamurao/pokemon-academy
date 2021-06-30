@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core";
 const navBarStyles = makeStyles(() => ({
     toolbar: {
         width:"100%",
-        color:"rgb(250,250,250)",
+        // color:"rgb(250,250,250)",
         // border:"3px solid purple",
         padding: "1rem",
         textShadow: "1px 1px 1px black",

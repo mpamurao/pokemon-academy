@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Container, Button, withStyles} from '@material-ui/core';
 import CoursesStudent from './CoursesStudent';
 import AddCourse from './AddCourse';
-import teacherClassRosterStyles from '../../styles/teacherStyles/teacherClassRosterStyles';
+import classRosterStyles from '../../styles/classRosterStyles';
 
 class StudentClassRoster extends Component {
     constructor(props) {
@@ -44,17 +44,17 @@ class StudentClassRoster extends Component {
                         Add A Class
                     </Button>
                 </Container>
-
-                {/* create a new course or show courses that student has */}
-                {this.state.viewMode === addClass 
-                    ? <AddCourse email={this.state.email} /> 
-                        : this.state.viewMode === viewCourse
-                            ? <CoursesStudent email={this.state.email} courseListUpdated={this.courseListUpdated}/>
-                            : ""}
-
+                <Container className={classes.classView}>
+                    {/* create a new course or show courses that student has */}
+                    {this.state.viewMode === addClass 
+                        ? <AddCourse email={this.state.email} /> 
+                            : this.state.viewMode === viewCourse
+                                ? <CoursesStudent email={this.state.email} courseListUpdated={this.courseListUpdated}/>
+                                : ""}
+                </Container>
             </div>
         );
     }
 }
 
-export default withStyles(teacherClassRosterStyles)(StudentClassRoster);
+export default withStyles(classRosterStyles)(StudentClassRoster);

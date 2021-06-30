@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Container, Button, withStyles} from '@material-ui/core';
 import CreateCourse from './CreateCourse';
 import CoursesTeacher from './CoursesTeacher';
-import teacherClassRosterStyles from '../../styles/teacherStyles/teacherClassRosterStyles';
+import classRosterStyles from '../../styles/classRosterStyles';
 
 class TeacherClassRoster extends Component {
     constructor(props) {
@@ -57,4 +57,4 @@ class TeacherClassRoster extends Component {
     }
 }
 
-export default withStyles(teacherClassRosterStyles)(TeacherClassRoster);
+export default withStyles(classRosterStyles)(TeacherClassRoster);
