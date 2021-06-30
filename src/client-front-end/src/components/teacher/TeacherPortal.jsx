@@ -31,14 +31,14 @@ class TeacherPortal extends Component {
         return (
             <div className={classes.portal}>
                 <TeacherPortalNavBar setCurrentPage={this.setCurrentPage} />
-                <Container>
+                <div className={classes.tableContainer}>
                     {this.state.currentPage === "myAccount" 
                         ? <Container>Please select an item from the menu</Container>
                         : this.state.currentPage === "classRoster"
                             ? <TeacherClassRoster email={this.state.email} classes={classes}/>
                             : <Container>Logging out</Container>
                     }
-                </Container>
+                </div>
             </div>
         );
     }

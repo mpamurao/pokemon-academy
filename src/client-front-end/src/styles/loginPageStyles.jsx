@@ -1,6 +1,6 @@
 const loginPageStyles = {
     welcomePage: {
-        border:"3px solid blue",
+        // border:"3px solid blue",
         width:"100%",
         display:"flex",
         justifyContent:"center"

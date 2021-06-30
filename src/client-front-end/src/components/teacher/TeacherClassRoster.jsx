@@ -27,8 +27,8 @@ class TeacherClassRoster extends Component {
         const viewCourse = "viewCourse";
         const createCourse = "createCourse";
         return (
-            <div>
-                <Container disableGutters margin={1}>
+            <div className={classes.classRoster}>
+                <Container disableGutters>
                     <Button variant="text" aria-label="view courses"
                         className={this.state.viewMode === "viewCourse" 
                         ? `${classes.buttonFocused}` : `${classes.button}`}
@@ -45,13 +45,14 @@ class TeacherClassRoster extends Component {
                     </Button>
                 </Container>
 
-                {/* create a new course or show courses that teacher has */}
-                {this.state.viewMode === createCourse 
-                    ? <CreateCourse email={this.state.email} /> 
-                        : this.state.viewMode === viewCourse
-                            ? <CoursesTeacher email={this.state.email} courseListUpdated={this.courseListUpdated}/>
-                            : ""}
-
+                <div className={classes.classView}>
+                    {/* create a new course or show courses that teacher has */}
+                    {this.state.viewMode === createCourse 
+                        ? <CreateCourse email={this.state.email} classes={classes} /> 
+                            : this.state.viewMode === viewCourse
+                                ? <CoursesTeacher email={this.state.email} classes={classes} />
+                                : ""}
+                </div>
             </div>
         );
     }

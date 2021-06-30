@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import CourseService from '../../service/CourseService';
 
 function CoursesTeacher(props) {
-    const {email} = props;
+    const {email, classes} = props;
     const [courses, setCourses] = useState([]);
     const [warning, setWarning] = useState("");
     const [headCells, setHeadCells] = useState([]);
@@ -104,7 +104,8 @@ function CoursesTeacher(props) {
                 });
     }
     return (
-        <div>
+
+        <div className={classes.tableDisplay}>
             {warning === "No email provided." ? <Typography>{warning}</Typography> : ""}
             <Paper style={{ height: 450, width: '100%' }}>
                 <DataGrid 

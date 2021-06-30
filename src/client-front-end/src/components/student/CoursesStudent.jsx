@@ -87,7 +87,7 @@ function CoursesStudent(props) {
                 : ""
             }
 
-            <Paper style={{height:450}}>
+            <Paper style={{ height: 450, width: '100%' }}>
                 <DataGrid className={classes.root}
                     rows={rows}
                     columns={columns}

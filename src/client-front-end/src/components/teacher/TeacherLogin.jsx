@@ -56,8 +56,7 @@ class TeacherLogin extends Component {
                         
                         {this.state.form === "login" ? 
                             <TeacherLoginForm classes={classes} />
-                            : <TeacherRegisterForm classes={classes}/>
-                            
+                            : <TeacherRegisterForm classes={classes}/>   
                         }
                     </Container>
                 </Container>
