@@ -57,7 +57,7 @@ class StudentService {
 
    removeCoursesFromStudent = (email, courses) => {
       return axios
-      .post(`${studentURL}/${email}/remove?courseIds=${courses.join(",")}`)
+      .delete(`${studentURL}/${email}/remove?courseIds=${courses.join(",")}`)
       .then(res => res.data)
       .catch(err => {
          return err.response.data;

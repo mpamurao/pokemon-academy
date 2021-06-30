@@ -66,7 +66,7 @@ function AddCourse(props) {
                 }
 
                 setClassSizeMaxed(false);
-                StudentService.getCoursesByStudent(email);
+                getCourses();
                 setAddedCourses([]);
             });
     }

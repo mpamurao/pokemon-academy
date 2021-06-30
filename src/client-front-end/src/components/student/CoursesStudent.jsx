@@ -71,6 +71,7 @@ function CoursesStudent(props) {
             .then(res => {
                 console.log(res);
                 setValidateRemovedCourse(true);
+                getCoursesByStudent();
                 setRemovedCourses([]);
             });
     }
