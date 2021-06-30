@@ -115,7 +115,7 @@ public class StudentController {
 //			if course size is the same value as course enrolled, don't enroll student into the class
 		for (CourseModel course: addedCourses) {
 			if (course.getCourse_size() <=  course.getStudents().size()) {
-				return new ResponseEntity<>("Class is full", headers, HttpStatus.CONFLICT);
+				return new ResponseEntity<>("Class is full: " + course.getCourse_name(), headers, HttpStatus.CONFLICT);
 			}
 			
 			currentStudent.getCourses_student().add(course);

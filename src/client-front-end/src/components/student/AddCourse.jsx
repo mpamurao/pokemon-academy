@@ -74,7 +74,14 @@ function AddCourse(props) {
     return (
         <div className={classes.tableDisplay}>
             <Typography> Select classes to add to your class schedule</Typography>
-            {classSizeMaxed ? <Typography color="error">{classSizeMaxed}. Please try adding a different course.</Typography> : ""}
+            
+            {classSizeMaxed 
+                ? <Typography color="error">
+                    {classSizeMaxed}. Please try adding a different course.
+                    </Typography> 
+                : ""
+            }
+
             <Paper style={{height: 450}}>
             <DataGrid className={classes.root}            
                     rows={rows}
@@ -85,7 +92,11 @@ function AddCourse(props) {
                     onSelectionModelChange={newSelection => setAddedCourses(newSelection.selectionModel)}
                 />
             </Paper>
-            <Button variant="contained" color="primary" onClick={addCourseToSchedule} className={classes.buttonTable}>Add to Schedule</Button>
+            <Button variant="contained" color="primary" 
+                onClick={addCourseToSchedule} 
+                className={classes.buttonTable}>
+                    Add to Schedule
+            </Button>
         </div>
     );
 }
