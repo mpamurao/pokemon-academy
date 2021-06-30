@@ -73,10 +73,10 @@ function AddCourse(props) {
 
     return (
         <div className={classes.tableDisplay}>
-            <Typography> Select classes to add to your class schedule</Typography>
+            <Typography className={classes.instructions}> Select classes to add to your class schedule</Typography>
             
             {classSizeMaxed 
-                ? <Typography color="error">
+                ? <Typography color="error" className={classes.instructions}>
                     {classSizeMaxed}. Please try adding a different course.
                     </Typography> 
                 : ""

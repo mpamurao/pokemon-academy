@@ -33,6 +33,9 @@ const classRosterStyles = {
         flexFlow:"row wrap",
         justifyContent:"center",
     },
+    instructions: {
+        margin:"0.5rem 0rem 1rem 0rem"
+    },
     tableDisplay: {
         width:"90%",
         // border:"2px solid red",
