@@ -49,7 +49,7 @@ class StudentService {
 
       return axios
          .post(`${studentURL}/${email}/add?courseIds=${courses.join(",")}`)
-         .then(res => res)
+         .then(res => res.data)
          .catch(err => {
             return err.response.data;
          });

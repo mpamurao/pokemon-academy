@@ -13,7 +13,7 @@ function AddCourse(props) {
     const [classSizeMaxed, setClassSizeMaxed] = useState(false);
 
     useEffect(() => {
-        setHeadCells(["course_id", "course_name", "course_description", "department", "course_size", "course_enrolled"]);
+        setHeadCells(["course_id", "course_name", "course_description", "department", "course_size", "students_enrolled"]);
         getCourses();
     }, []);
 
@@ -48,7 +48,7 @@ function AddCourse(props) {
             course_description: course.course_description,
             department: course.department,
             course_size: course.course_size,
-            course_enrolled:course.course_enrolled,
+            students_enrolled:`${course.students.length} / ${course.course_size}`,
         })
     )
 

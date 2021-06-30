@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import CourseService from '../../service/CourseService';
 
 function CoursesStudent(props) {
-    const {email, classes} = props;
+    const {email} = props;
     const [courses, setCourses] = useState([]);
     const [warning, setWarning] = useState("");
     const [headCells, setHeadCells] = useState([]);
@@ -18,7 +18,7 @@ function CoursesStudent(props) {
             return;
         }
 
-        setHeadCells(["course_id", "course_name", "course_description", "department", "course_size", "course_enrolled"]);
+        setHeadCells(["course_id", "course_name", "course_description", "department", "course_size", "students_enrolled"]);
         getCoursesByStudent();
 
     }, []);
@@ -41,6 +41,9 @@ function CoursesStudent(props) {
         if (header === "course_id") {
             return {field: header, headerName:header, width:150, editable: false}
         }
+        if (header === "students_enrolled") {
+            return {field: header, headerName:header, width:200, editable: false}
+        }
         if (header === "course_description") {
             return {field: header, headerName:header, width:350, editable: false}
         }
@@ -56,7 +59,7 @@ function CoursesStudent(props) {
             course_description: course.course_description,
             department: course.department,
             course_size: course.course_size,
-            course_enrolled:course.course_enrolled,
+            students_enrolled:`${course.students.length} / ${course.course_size}`,
         })
     )
 

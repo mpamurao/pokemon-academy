@@ -18,7 +18,7 @@ function CoursesTeacher(props) {
             return;
         }
 
-        setHeadCells(["course_id", "course_name", "course_description", "department", "course_size", "course_enrolled"]);
+        setHeadCells(["course_id", "course_name", "course_description", "department", "course_size", "students_enrolled"]);
         getCoursesByTeacher();
 
     }, []);
@@ -38,8 +38,11 @@ function CoursesTeacher(props) {
 
     const columns = headCells.map(header => {
         // console.log(header);
-        if (header === "course_id" || header === "course_enrolled") {
+        if (header === "course_id") {
             return {field: header, headerName:header, width:150, editable: false}
+        }
+        if (header === "students_enrolled") {
+            return {field: header, headerName:header, width:200, editable: false}
         }
         if (header === "course_description") {
             return {field: header, headerName:header, width:350, editable: true}
@@ -56,7 +59,7 @@ function CoursesTeacher(props) {
             course_description: course.course_description,
             department: course.department,
             course_size: course.course_size,
-            course_enrolled:course.course_enrolled,
+            students_enrolled:`${course.students.length} / ${course.course_size}`,
         })
     )
 
