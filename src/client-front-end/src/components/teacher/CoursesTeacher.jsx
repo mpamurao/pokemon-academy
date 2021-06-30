@@ -118,7 +118,9 @@ function CoursesTeacher(props) {
                     onEditCellChangeCommitted={handleEditCellChangeCommitted}
                 />
             </Paper> 
-            <Button variant="contained" color="primary" onClick={deleteCourses}>
+            <Button variant="contained" color="primary" 
+                onClick={deleteCourses} className={classes.buttonTable}
+            >
                 Delete
             </Button>
         </div>

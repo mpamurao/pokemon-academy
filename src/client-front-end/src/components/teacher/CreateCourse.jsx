@@ -72,20 +72,31 @@ class CreateCourse extends Component {
                     <TextField required error={!this.state.validRequest && !this.state.course_name} 
                         id="courseName" label="Course Name" 
                         variant="outlined" value={this.state.course_name} 
-                        onChange={event => this.handleChange(event, "course_name")} />
+                        onChange={event => this.handleChange(event, "course_name")} 
+                        style={{marginTop:"0.3rem"}}
+                    />
                     <TextField required error={!this.state.validRequest && !this.state.course_description}
                         id="courseId" label="Course Description" 
                         variant="outlined" value={this.state.course_description} 
-                        onChange={event => this.handleChange(event, "course_description")} />
+                        onChange={event => this.handleChange(event, "course_description")} 
+                        style={{marginTop:"0.3rem"}}
+                    />
                     <TextField required error={!this.state.validRequest && !this.state.course_size}
                         id="courseSize" label="Course Size" 
                         variant="outlined" value={this.state.course_size} 
-                        onChange={event => this.handleChange(event, "course_size")} />
+                        onChange={event => this.handleChange(event, "course_size")} 
+                        style={{marginTop:"0.3rem"}}
+                    />
                     <TextField required error={!this.state.validRequest && !this.state.department}
                         id="department" label="Department" 
                         variant="outlined" value={this.state.department} 
-                        onChange={event => this.handleChange(event, "department")} />
-                    <Button type="submit" onClick={this.createClass}>
+                        onChange={event => this.handleChange(event, "department")} 
+                        style={{marginTop:"0.3rem"}}
+                    />
+                    <Button type="submit" onClick={this.createClass}
+                        variant="contained" color="primary"
+                        className={classes.buttonTable}
+                    >
                         Create Class
                     </Button>
 
