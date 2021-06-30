@@ -49,7 +49,7 @@ public class StudentService {
 		return studentRepo.checkCorrespondingPass(emailInput);
 	}
 	
-	// get student from email
+//	get student from email
 	public StudentModel getStudentFromEmail(String emailInput) {
 		return studentRepo.findByEmail(emailInput);
 	}

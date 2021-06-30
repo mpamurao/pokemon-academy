@@ -19,21 +19,21 @@ public class TeacherController {
 	
 //	CRUD
 	
-	@GetMapping("/directory")
 //	get all teachers
+	@GetMapping("/directory")
 	public Iterable<TeacherModel> getTeachers() {
 		return teacherService.getTeachers();
 	}
 	
-	@GetMapping("/directory/{employee_id}")
 //	get teacher by id
+	@GetMapping("/directory/{employee_id}")
 	public ResponseEntity<Object> getTeacherById(@PathVariable Long employee_id) {
 //		return a response that includes the request body and httpstatus
 		return new ResponseEntity<>(teacherService.getTeacherById(employee_id), HttpStatus.OK);
 	}
 	
-	@PostMapping("/register")
 //	post/create new teacher
+	@PostMapping("/register")
 	public ResponseEntity<Object> addTeacher(@Valid @RequestBody TeacherModel teacher) {
 		//	return bad response if conditions are met (value is null in teacher body request)
 		if (teacher.getFirst_name() == null || teacher.getLast_name() == null || teacher.getEmail() == null 
@@ -47,14 +47,14 @@ public class TeacherController {
 		return new ResponseEntity<>(teacherService.addTeacher(teacher), HttpStatus.ACCEPTED);
 	}
 	
-	@PatchMapping("/directory/{employee_id}")
 //	update teacher
+	@PatchMapping("/directory/{employee_id}")
 	public ResponseEntity<Object> updateTeacher(@Valid @RequestBody TeacherModel teacher) {
 		return new ResponseEntity<>(teacherService.updateTeacher(teacher), HttpStatus.ACCEPTED);
 	}
 	
-	@DeleteMapping("/directory/{employee_id}")
 //	delete teacher profile
+	@DeleteMapping("/directory/{employee_id}")
 	public ResponseEntity<Object> deleteTeacher(@PathVariable Long employee_id) {
 		teacherService.deleteTeacher(employee_id);
 		return new ResponseEntity<>("Deleted teacher profile", HttpStatus.ACCEPTED);
@@ -78,15 +78,15 @@ public class TeacherController {
 				return new ResponseEntity<>("Logging in...", HttpStatus.OK);
 			}
 		}
+		
 		return new ResponseEntity<>("Invalid email and/or password.", HttpStatus.UNAUTHORIZED);
 	}
 	
-	@GetMapping("/{email}/courses")
 //	get course that are associated with the teacher
+	@GetMapping("/{email}/courses")
 	public ResponseEntity<Object> getCoursesByTeacher(@PathVariable String email) {
 //		get the teacher model associated to the email in request body
 		TeacherModel currentTeacher = teacherService.getTeacherFromEmail(email);
-		
 		
 		return new ResponseEntity<>(currentTeacher.getCourses_teacher(), HttpStatus.OK);
 	}
